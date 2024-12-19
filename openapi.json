@@ -8,13 +8,10 @@
   "servers": [
     {
       "url": "https://graph.facebook.com"
-    },
-    {
-      "url": "{{base-url}}"
     }
   ],
   "paths": {
-    "/{Version}/{Phone-Number-ID}/register": {
+    "/{api-version}/{business-phone-number-id}/register": {
       "post": {
         "tags": ["Registration"],
         "summary": "Migrate Account",
@@ -99,7 +96,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -107,7 +104,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -116,7 +113,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/business_compliance_info": {
+    "/{api-version}/{business-phone-number-id}/business_compliance_info": {
       "get": {
         "tags": ["Business Compliance"],
         "summary": "Get India-based business compliance info",
@@ -588,7 +585,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -596,7 +593,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -605,11 +602,11 @@
         }
       ]
     },
-    "/{Version}/app/uploads/": {
+    "/{api-version}/app/uploads/": {
       "post": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Create an Upload Session",
-        "description": "The Resumable Upload series of requests allow you to upload Profile Pictures to Meta so you can receive a handle to update these pictures in the Business Profile API. The Resumable Upload requests consist of the following:\n\n* **Resumable Upload - Create an Upload Session**\n* **Resumable Upload - Upload File Data**\n* **Resumable Upload - Query File Upload Status**\n\nTo create a new upload session, make a **POST** call using the `/app/uploads` endpoint.\n\nFor more information, see [Create an Upload Session](https://developers.facebook.com/docs/graph-api/guides/upload#step-1--create-a-session).\n\n**Response**  \nThe call returns a server-generated value that includes the session ID that you can use in later calls. \n\n>Copy this value and Open the **Environment quick look** in Postman and paste it in the **CURRENT VALUE** for `Upload-ID`.",
+        "description": "The Resumable Upload series of requests allow you to upload Profile Pictures to Meta so you can receive a handle to update these pictures in the Business Profile API. The Resumable Upload requests consist of the following:\n\n* **Resumable Upload - Create an Upload Session**\n* **Resumable Upload - Upload File Data**\n* **Resumable Upload - Query File Upload Status**\n\nTo create a new upload session, make a **POST** call using the `/app/uploads` endpoint.\n\nFor more information, see [Create an Upload Session](https://developers.facebook.com/docs/graph-api/guides/upload#step-1--create-a-session).\n\n**Response**  \nThe call returns a server-generated value that includes the session ID that you can use in later calls. \n\n>Copy this value and Open the **Environment quick look** in Postman and paste it in the **CURRENT VALUE** for `upload-id`.",
         "operationId": "resumableUploadCreateAnUploadSession",
         "parameters": [
           {
@@ -668,7 +665,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -677,11 +674,11 @@
         }
       ]
     },
-    "/{Version}/{Upload-ID}": {
+    "/{api-version}/{upload-id}": {
       "get": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Query File Upload Status",
-        "description": "You can query the status of an upload session by making a **GET** call to an endpoint that is named based on the **`Upload-ID`** that was returned through the **Resumable Upload - Create an Upload Session** request.\n\nWhen uploading data, you **must include the access token as an HTTP header.**\n\n**Example**\n``` bash\nGET https://graph.facebook.com/v14.0/upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI HTTP/1.1\nAuthorization: OAuth {{USER_ACCESS_TOKEN}}\n\n```\n\nFor more information, see [Query File Upload Status after an Interruption](https://developers.facebook.com/docs/graph-api/guides/upload#interruptions).\n\n**Response**\nThe result will be a JSON-encoded ID and offset that looks like the following:\n\n``` json\n{ \"id\": \"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\", \"file_offset\": 0 }\n```",
+        "description": "You can query the status of an upload session by making a **GET** call to an endpoint that is named based on the **`upload-id`** that was returned through the **Resumable Upload - Create an Upload Session** request.\n\nWhen uploading data, you **must include the access token as an HTTP header.**\n\n**Example**\n``` bash\nGET https://graph.facebook.com/v14.0/upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI HTTP/1.1\nAuthorization: OAuth {{USER_ACCESS_TOKEN}}\n\n```\n\nFor more information, see [Query File Upload Status after an Interruption](https://developers.facebook.com/docs/graph-api/guides/upload#interruptions).\n\n**Response**\nThe result will be a JSON-encoded ID and offset that looks like the following:\n\n``` json\n{ \"id\": \"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\", \"file_offset\": 0 }\n```",
         "operationId": "resumableUploadQueryFileUploadStatus",
         "parameters": [
           {
@@ -727,7 +724,7 @@
       "post": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Upload File Data",
-        "description": "To upload a profile picture to your business profile, make a **POST** call to the named endpoint {{Version}}/{{Upload-ID}}, where **Upload-ID** is the value you received from **Resumable Upload - Create an Upload Session**. This value should look like the following:\n\n``` json\n\"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\"\n\n```\n\nThe **`file_offset`** parameter **must** be included as an HTTP header. It will not work as a query parameter.\n\nThe access token must be included in an Authorization HTTP header. It cannot work as a query parameter.\n\nFor more information, see [Initiate Data Upload](https://developers.facebook.com/docs/graph-api/guides/upload#step-2--initiate-upload).\n\n**Response**  \nThe call returns a handle that includes the session ID that you can use to update your profile picture using **Update Business Profile**.",
+        "description": "To upload a profile picture to your business profile, make a **POST** call to the named endpoint {{Version}}/{{upload-id}}, where **upload-id** is the value you received from **Resumable Upload - Create an Upload Session**. This value should look like the following:\n\n``` json\n\"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\"\n\n```\n\nThe **`file_offset`** parameter **must** be included as an HTTP header. It will not work as a query parameter.\n\nThe access token must be included in an Authorization HTTP header. It cannot work as a query parameter.\n\nFor more information, see [Initiate Data Upload](https://developers.facebook.com/docs/graph-api/guides/upload#step-2--initiate-upload).\n\n**Response**  \nThe call returns a handle that includes the session ID that you can use to update your profile picture using **Update Business Profile**.",
         "operationId": "resumableUploadUploadFileData",
         "parameters": [
           {
@@ -768,7 +765,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -776,7 +773,7 @@
           }
         },
         {
-          "name": "Upload-ID",
+          "name": "upload-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -785,7 +782,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/whatsapp_business_profile": {
+    "/{api-version}/{business-phone-number-id}/whatsapp_business_profile": {
       "get": {
         "tags": ["Business Profiles"],
         "summary": "Get Business Profile",
@@ -1085,7 +1082,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1093,7 +1090,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -1102,7 +1099,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/deregister": {
+    "/{api-version}/{business-phone-number-id}/deregister": {
       "post": {
         "tags": ["Registration"],
         "summary": "Deregister Phone",
@@ -1127,7 +1124,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1135,7 +1132,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -1144,7 +1141,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/media": {
+    "/{api-version}/{business-phone-number-id}/media": {
       "post": {
         "tags": ["Media"],
         "summary": "Upload Image",
@@ -1236,7 +1233,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1244,7 +1241,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -1253,11 +1250,11 @@
         }
       ]
     },
-    "/{Version}/{Media-ID}": {
+    "/{api-version}/{media-id}": {
       "get": {
         "tags": ["Media"],
         "summary": "Retrieve Media URL",
-        "description": "To retrieve your media’s URL, make a **GET** call to **`/{{Media-ID}}`**. Use the returned URL to download the media file. Note that clicking this URL (i.e. performing a generic GET) will not return the media; you must include an access token. For more information, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).\n\nYou can also use the optional query **`?phone_number_id`** for **`Retrieve Media URL`** and **`Delete Media`**. This parameter checks to make sure the media belongs to the phone number before retrieval or deletion.\n\n#### Response\n\nA successful response includes an object with a media URL. The URL is only valid for 5 minutes. To use this URL, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).",
+        "description": "To retrieve your media’s URL, make a **GET** call to **`/{{media-id}}`**. Use the returned URL to download the media file. Note that clicking this URL (i.e. performing a generic GET) will not return the media; you must include an access token. For more information, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).\n\nYou can also use the optional query **`?phone_number_id`** for **`Retrieve Media URL`** and **`Delete Media`**. This parameter checks to make sure the media belongs to the phone number before retrieval or deletion.\n\n#### Response\n\nA successful response includes an object with a media URL. The URL is only valid for 5 minutes. To use this URL, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).",
         "operationId": "retrieveMediaUrl",
         "parameters": [
           {
@@ -1323,7 +1320,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1331,7 +1328,7 @@
           }
         },
         {
-          "name": "Media-ID",
+          "name": "media-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -1340,7 +1337,7 @@
         }
       ]
     },
-    "/{Version}/{Media-ID}/": {
+    "/{api-version}/{media-id}/": {
       "delete": {
         "tags": ["Media"],
         "summary": "Delete Media",
@@ -1385,7 +1382,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1393,7 +1390,7 @@
           }
         },
         {
-          "name": "Media-ID",
+          "name": "media-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -1402,7 +1399,7 @@
         }
       ]
     },
-    "/{Version}/{Media-URL}": {
+    "/{api-version}/{media-url}": {
       "get": {
         "tags": ["Media"],
         "summary": "Download Media",
@@ -1425,7 +1422,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -1433,7 +1430,7 @@
           }
         },
         {
-          "name": "Media-URL",
+          "name": "media-url",
           "in": "path",
           "required": true,
           "schema": {
@@ -1442,7 +1439,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/messages": {
+    "/{api-version}/{business-phone-number-id}/messages": {
       "put": {
         "tags": ["Messages"],
         "summary": "Mark Message As Read",
@@ -3321,7 +3318,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3329,7 +3326,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -3338,7 +3335,7 @@
         }
       ]
     },
-    "/{Version}/{WABA-ID}/phone_numbers": {
+    "/{api-version}/{waba-id}/phone_numbers": {
       "get": {
         "tags": ["Phone Numbers"],
         "summary": "Get Phone Numbers",
@@ -3419,7 +3416,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3427,7 +3424,7 @@
           }
         },
         {
-          "name": "WABA-ID",
+          "name": "waba-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -3436,7 +3433,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}": {
+    "/{api-version}/{business-phone-number-id}": {
       "get": {
         "tags": ["Phone Numbers"],
         "summary": "Get Phone Number By ID",
@@ -3559,7 +3556,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3567,7 +3564,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -3576,7 +3573,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/request_code": {
+    "/{api-version}/{business-phone-number-id}/request_code": {
       "post": {
         "tags": ["Phone Numbers"],
         "summary": "Request Verification Code",
@@ -3637,7 +3634,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3645,7 +3642,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -3654,7 +3651,7 @@
         }
       ]
     },
-    "/{Version}/{Phone-Number-ID}/verify_code": {
+    "/{api-version}/{business-phone-number-id}/verify_code": {
       "post": {
         "tags": ["Phone Numbers"],
         "summary": "Verify Code",
@@ -3710,7 +3707,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3718,7 +3715,7 @@
           }
         },
         {
-          "name": "Phone-Number-ID",
+          "name": "business-phone-number-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -3727,7 +3724,7 @@
         }
       ]
     },
-    "/{Version}/debug_token": {
+    "/{api-version}/debug_token": {
       "get": {
         "tags": ["WABAs"],
         "summary": "Get Shared WABA ID",
@@ -3895,7 +3892,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -3904,7 +3901,7 @@
         }
       ]
     },
-    "/{Version}/{Business-ID}/client_whatsapp_business_accounts": {
+    "/{api-version}/{business-id}/client_whatsapp_business_accounts": {
       "get": {
         "tags": ["WABAs"],
         "summary": "Get List of Shared WABAs",
@@ -4029,7 +4026,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -4037,7 +4034,7 @@
           }
         },
         {
-          "name": "Business-ID",
+          "name": "business-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -4046,7 +4043,7 @@
         }
       ]
     },
-    "/{Version}/{WABA-ID}/subscribed_apps": {
+    "/{api-version}/{waba-id}/subscribed_apps": {
       "get": {
         "tags": ["WABA Subscriptions"],
         "summary": "Get All Subscriptions for a WABA",
@@ -4274,7 +4271,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -4282,7 +4279,7 @@
           }
         },
         {
-          "name": "WABA-ID",
+          "name": "waba-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -6597,7 +6594,7 @@
         }
       ]
     },
-    "/{Version}/{Business-ID}/extendedcredits": {
+    "/{api-version}/{business-id}/extendedcredits": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Extended Credits",
@@ -6654,7 +6651,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -6662,7 +6659,7 @@
           }
         },
         {
-          "name": "Business-ID",
+          "name": "business-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -6671,7 +6668,7 @@
         }
       ]
     },
-    "/{Version}/{Credit-Line-ID}/owning_credit_allocation_configs": {
+    "/{api-version}/{credit-line-id}/owning_credit_allocation_configs": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Credit Line ID",
@@ -6694,7 +6691,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -6702,7 +6699,7 @@
           }
         },
         {
-          "name": "Credit-Line-ID",
+          "name": "credit-line-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -6711,7 +6708,7 @@
         }
       ]
     },
-    "/{Version}/{Allocation-Config-ID}": {
+    "/{api-version}/{allocation-config-id}": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Credit Sharing Record ID",
@@ -6765,7 +6762,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -6773,7 +6770,7 @@
           }
         },
         {
-          "name": "Allocation-Config-ID",
+          "name": "allocation-config-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -6782,7 +6779,7 @@
         }
       ]
     },
-    "/{Version}/{Assigned-WABA-ID}": {
+    "/{api-version}/{assigned-waba-id}": {
       "get": {
         "tags": ["WABAs"],
         "summary": "WABA ID",
@@ -6878,7 +6875,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -6886,7 +6883,7 @@
           }
         },
         {
-          "name": "Assigned-WABA-ID",
+          "name": "assigned-waba-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -6895,7 +6892,7 @@
         }
       ]
     },
-    "/{Version}/{Business-ID}/owned_whatsapp_business_accounts": {
+    "/{api-version}/{business-id}/owned_whatsapp_business_accounts": {
       "get": {
         "tags": ["WABAs"],
         "summary": "Owned  and Client WABAs",
@@ -6921,7 +6918,7 @@
       },
       "parameters": [
         {
-          "name": "Version",
+          "name": "api-version",
           "in": "path",
           "required": true,
           "schema": {
@@ -6929,7 +6926,7 @@
           }
         },
         {
-          "name": "Business-ID",
+          "name": "business-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -7670,7 +7667,7 @@
         }
       ]
     },
-    "/{api-version}/<TEMPLATE_ID>": {
+    "/{api-version}/{templateid}": {
       "get": {
         "tags": ["Templates"],
         "summary": "Get template by ID (default fields)",
@@ -10190,9 +10187,6 @@
   ],
   "tags": [
     {
-      "name": "Account Migration"
-    },
-    {
       "name": "Business Compliance"
     },
     {
@@ -10214,7 +10208,7 @@
       "name": "Two-Step Verification"
     },
     {
-      "name": "WhatsApp Business Accounts (WABAs)"
+      "name": "WABAs"
     },
     {
       "name": "WABA Subscriptions"
