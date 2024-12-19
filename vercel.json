@@ -1,6 +1,9 @@
 {
   "version": 2,
-  "builds": [{ "src": "swagger-ui/**", "use": "@vercel/static" }],
+  "builds": [
+    { "src": "swagger-ui/**", "use": "@vercel/static" },
+    { "src": "openapi.json", "use": "@vercel/static" }
+  ],
   "routes": [
     {
       "src": "/openapi.json",
