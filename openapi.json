@@ -606,7 +606,7 @@
       "post": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Create an Upload Session",
-        "description": "The Resumable Upload series of requests allow you to upload Profile Pictures to Meta so you can receive a handle to update these pictures in the Business Profile API. The Resumable Upload requests consist of the following:\n\n* **Resumable Upload - Create an Upload Session**\n* **Resumable Upload - Upload File Data**\n* **Resumable Upload - Query File Upload Status**\n\nTo create a new upload session, make a **POST** call using the `/app/uploads` endpoint.\n\nFor more information, see [Create an Upload Session](https://developers.facebook.com/docs/graph-api/guides/upload#step-1--create-a-session).\n\n**Response**  \nThe call returns a server-generated value that includes the session ID that you can use in later calls. \n\n>Copy this value and Open the **Environment quick look** in Postman and paste it in the **CURRENT VALUE** for `upload-id`.",
+        "description": "The Resumable Upload series of requests allow you to upload Profile Pictures to Meta so you can receive a handle to update these pictures in the Business Profile API. The Resumable Upload requests consist of the following:\n\n* **Resumable Upload - Create an Upload Session**\n* **Resumable Upload - Upload File Data**\n* **Resumable Upload - Query File Upload Status**\n\nTo create a new upload session, make a **POST** call using the `/app/uploads` endpoint.\n\nFor more information, see [Create an Upload Session](https://developers.facebook.com/docs/graph-api/guides/upload#step-1--create-a-session).\n\n**Response**  \nThe call returns a server-generated value that includes the session ID that you can use in later calls. \n\n>Copy this value and Open the **Environment quick look** in Postman and paste it in the **CURRENT VALUE** for `Upload-ID`.",
         "operationId": "resumableUploadCreateAnUploadSession",
         "parameters": [
           {
@@ -678,7 +678,7 @@
       "get": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Query File Upload Status",
-        "description": "You can query the status of an upload session by making a **GET** call to an endpoint that is named based on the **`upload-id`** that was returned through the **Resumable Upload - Create an Upload Session** request.\n\nWhen uploading data, you **must include the access token as an HTTP header.**\n\n**Example**\n``` bash\nGET https://graph.facebook.com/v14.0/upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI HTTP/1.1\nAuthorization: OAuth {{USER_ACCESS_TOKEN}}\n\n```\n\nFor more information, see [Query File Upload Status after an Interruption](https://developers.facebook.com/docs/graph-api/guides/upload#interruptions).\n\n**Response**\nThe result will be a JSON-encoded ID and offset that looks like the following:\n\n``` json\n{ \"id\": \"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\", \"file_offset\": 0 }\n```",
+        "description": "You can query the status of an upload session by making a **GET** call to an endpoint that is named based on the **`Upload-ID`** that was returned through the **Resumable Upload - Create an Upload Session** request.\n\nWhen uploading data, you **must include the access token as an HTTP header.**\n\n**Example**\n``` bash\nGET https://graph.facebook.com/v14.0/upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI HTTP/1.1\nAuthorization: OAuth {{USER_ACCESS_TOKEN}}\n\n```\n\nFor more information, see [Query File Upload Status after an Interruption](https://developers.facebook.com/docs/graph-api/guides/upload#interruptions).\n\n**Response**\nThe result will be a JSON-encoded ID and offset that looks like the following:\n\n``` json\n{ \"id\": \"upload:MTphdHRhY2htZW50Ojlk2mJiZxUwLWV6MDUtNDIwMy05yTA3LWQ4ZDPmZGFkNTM0NT8=?sig=ARZqkGCA_uQMxC8nHKI\", \"file_offset\": 0 }\n```",
         "operationId": "resumableUploadQueryFileUploadStatus",
         "parameters": [
           {
@@ -1254,7 +1254,7 @@
       "get": {
         "tags": ["Media"],
         "summary": "Retrieve Media URL",
-        "description": "To retrieve your media’s URL, make a **GET** call to **`/{{media-id}}`**. Use the returned URL to download the media file. Note that clicking this URL (i.e. performing a generic GET) will not return the media; you must include an access token. For more information, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).\n\nYou can also use the optional query **`?phone_number_id`** for **`Retrieve Media URL`** and **`Delete Media`**. This parameter checks to make sure the media belongs to the phone number before retrieval or deletion.\n\n#### Response\n\nA successful response includes an object with a media URL. The URL is only valid for 5 minutes. To use this URL, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).",
+        "description": "To retrieve your media’s URL, make a **GET** call to **`/{{Media-ID}}`**. Use the returned URL to download the media file. Note that clicking this URL (i.e. performing a generic GET) will not return the media; you must include an access token. For more information, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).\n\nYou can also use the optional query **`?phone_number_id`** for **`Retrieve Media URL`** and **`Delete Media`**. This parameter checks to make sure the media belongs to the phone number before retrieval or deletion.\n\n#### Response\n\nA successful response includes an object with a media URL. The URL is only valid for 5 minutes. To use this URL, see [Download Media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media#download-media).",
         "operationId": "retrieveMediaUrl",
         "parameters": [
           {
@@ -3726,7 +3726,7 @@
     },
     "/{api-version}/debug_token": {
       "get": {
-        "tags": ["WABAs"],
+        "tags": ["WhatsApp Business Accounts"],
         "summary": "Get Shared WABA ID",
         "description": "Get Shared WABA ID",
         "operationId": "getSharedWabaId",
@@ -3903,7 +3903,7 @@
     },
     "/{api-version}/{business-id}/client_whatsapp_business_accounts": {
       "get": {
-        "tags": ["WABAs"],
+        "tags": ["WhatsApp Business Accounts"],
         "summary": "Get List of Shared WABAs",
         "description": "Get List of Shared WABAs",
         "operationId": "getListOfSharedWabas",
@@ -6781,7 +6781,7 @@
     },
     "/{api-version}/{assigned-waba-id}": {
       "get": {
-        "tags": ["WABAs"],
+        "tags": ["WhatsApp Business Accounts"],
         "summary": "WABA ID",
         "description": "Use this endpoint to get information about a specific WhatsApp Business Account (WABA).\n\n## Parameters\n\n| Name          | Description   |\n| ------------- | ------------- |\n| **`account_review_status`**   | Used to fetch the WhatsApp Business Account review status. This field can have one of the following values: `PENDING`, `APPROVED`, and `REJECTED`.|\n| **`id`**   | ID for this WABA.|\n| **`name`**   |WABA's name.|\n| **`message_template_namespace`**   | Namespace string for the message templates that belong to the WABA.|\n| **`currency`**   | WABA's currency.|\n| **`on_behalf_of_business_info`**   | Information about On Behalf Of relationships this account is part of.|\n| **`primary_funding_id`**   | A WABA's payment method ID. |\n| **`purchase_order_number`**   | Purchase order number supplied by the business. Used for payment management purposes. |\n| **`timezone_id`**   | Timezone ID for this WABA.|\n| **`owner_business_info`**   | Get the ID for the business that owns this WABA. Use this field to fetch a client's business ID.|\n\n## Examples\nUnder **Example Request** on the right-side panel, you can switch between examples of the following API calls:\n- Fetch a WABA’s Payment Method ID\n- Get WABA Review Status\n- Get WABA Information\n- Get WABA's Owner ID",
         "operationId": "wabaId",
@@ -6894,7 +6894,7 @@
     },
     "/{api-version}/{business-id}/owned_whatsapp_business_accounts": {
       "get": {
-        "tags": ["WABAs"],
+        "tags": ["WhatsApp Business Accounts"],
         "summary": "Owned  and Client WABAs",
         "description": "Use this API call to get a list of owned WhatsApp Business Accounts (WABAs). You can also filter and sort the results —see the available parameters below.\n\n## Parameters\n\n| Name          | Description   |\n| ------------- | ------------- |\n| **`filtering`**   | Used to  filter client and owned WhatsApp business accounts. See `filtering` object for more options. |\n| **`sort`**   | Used to sort shared and owned WhatsApp business accounts. Currently, you can sort WABAs based on their creation time. The two supported sorting categories are `creation_time_ascending` and `creation_time_descending`.|\n\nThe `filtering` object\n\n| Name          | Description   |\n| ------------- | ------------- |\n| **`field`**   | Contains the field being used for filtering. Currently, you can use the `creation_time` for filtering.|\n| **`operator`**   | Contains how you want to filter the accounts. Supported values: `LESS_THAN`, `GREATER_THAN`. |\n| **`value`**   | A timestamp to be used in the filtering. |\n\n## Examples\n\nUnder **Example Request** on the right-side panel, you can switch between examples of the following API calls:\n- Fetch list of owned and client WABAs\n- Filter list of owned and client WABAs\n- Sort list of owned and client WABAs",
         "operationId": "ownedAndClientWabas",
@@ -7667,7 +7667,7 @@
         }
       ]
     },
-    "/{api-version}/{templateid}": {
+    "/{api-version}/{template-id}": {
       "get": {
         "tags": ["Templates"],
         "summary": "Get template by ID (default fields)",
@@ -7946,7 +7946,25 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "template-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       },
       "post": {
         "tags": ["Templates"],
@@ -8231,6 +8249,14 @@
       "parameters": [
         {
           "name": "api-version",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "template-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -10229,7 +10255,7 @@
       "name": "Lines of Credit"
     },
     {
-      "name": "WABAs"
+      "name": "WhatsApp Business Accounts"
     },
     {
       "name": "QR codes"
