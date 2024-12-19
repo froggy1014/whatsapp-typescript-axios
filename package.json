@@ -9,7 +9,8 @@
     "changeset": "changeset",
     "ci:version": "changeset version",
     "ci:publish": "npm publish --access public",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "postinstall": "npm run generate"
   },
   "author": "froggy1014",
   "license": "ISC",
