@@ -1,5 +1,17 @@
 # whatsapp-typescript-axios
 
+## 1.3.0
+
+### Minor Changes
+
+- a450373: initial swagger-ui setup
+- cc7acf7: add vercel.json
+
+### Patch Changes
+
+- a50d231: nomalize parameter names to lowercase
+- 044870d: update package.json to include files array for better package management
+
 ## 1.2.1
 
 ### Patch Changes
