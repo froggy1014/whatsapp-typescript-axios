@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.2.1
+
+### Patch Changes
+
+- c2df8a7: add postinstall script
+
 ## 1.2.0
 
 ### Minor Changes
