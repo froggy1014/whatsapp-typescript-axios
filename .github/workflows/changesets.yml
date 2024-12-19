@@ -1,0 +1,44 @@
+name: Changesets
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup npmrc
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Debug npmrc
+        run: cat ~/.npmrc
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create and publish versions
+        uses: changesets/action@v1
+        with:
+          version: npm run ci:version
+          commit: "chore: update versions"
+          title: "chore: update versions"
+          publish: npm run ci:publish -- --access public --no-git-checks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUSKY: 0
+          

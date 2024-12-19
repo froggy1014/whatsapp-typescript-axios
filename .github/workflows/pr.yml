@@ -1,0 +1,28 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Lint
+        run: |
+          npx @biomejs/biome check --files-ignore-unknown=true --fix ./src
+          npx @biomejs/biome check --write --no-errors-on-unmatched ./src
+          npx @biomejs/biome check --write --organize-imports-enabled=false --no-errors-on-unmatched ./src
+          npx @biomejs/biome check --write --unsafe --no-errors-on-unmatched ./src
+          npx @biomejs/biome format --write --no-errors-on-unmatched ./src
+          npx @biomejs/biome lint --write --no-errors-on-unmatched ./src

@@ -1,11 +1,14 @@
 {
-  "name": "whatsapp-cloud-api-openapi-generator",
+  "name": "whatsapp-typescript-axios",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "openapi-generator-cli generate"
+    "generate": "openapi-generator-cli generate",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
   },
-  "author": "",
+  "author": "froggy1014",
   "license": "ISC",
   "description": "An OpenAPI generator tool for the WhatsApp Cloud API, designed to simplify API client generation and streamline integration workflows.",
   "keywords": [
@@ -20,6 +23,7 @@
     "api client"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.27.11",
     "@openapitools/openapi-generator-cli": "^2.15.3",
     "typescript": "^5.2.2"
   },
