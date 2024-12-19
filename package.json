@@ -5,7 +5,8 @@
   "scripts": {
     "generate": "openapi-generator-cli generate",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "ci:version": "changeset version",
+    "ci:publish": "node ./scripts/add-type-module.js && npm publish --access public",
     "release": "changeset publish"
   },
   "author": "froggy1014",
