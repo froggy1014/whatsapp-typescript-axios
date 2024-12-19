@@ -3,10 +3,12 @@
   "version": "1.1.0",
   "main": "index.js",
   "scripts": {
+    "commit": "cz",
+    "prepare": "husky",
     "generate": "openapi-generator-cli generate",
     "changeset": "changeset",
     "ci:version": "changeset version",
-    "ci:publish": "node ./scripts/add-type-module.js && npm publish --access public",
+    "ci:publish": "npm publish --access public",
     "release": "changeset publish"
   },
   "author": "froggy1014",
@@ -16,8 +18,8 @@
     "whatsapp",
     "cloud api",
     "openapi",
-    "typescript",
     "axios",
+    "typescript",
     "api generator",
     "whatsapp api",
     "whatsapp integration",
@@ -26,9 +28,24 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.11",
     "@openapitools/openapi-generator-cli": "^2.15.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.1.0",
+    "commitizen": "^4.3.1",
+    "husky": "^9.1.7"
   },
   "dependencies": {
     "axios": "^1.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.ts"
+    }
   }
 }
