@@ -7,113 +7,11 @@
   },
   "servers": [
     {
-      "url": "https://graph.facebook.com"
+      "url": "https://graph.facebook.com/v21.0"
     }
   ],
   "paths": {
-    "/{api-version}/{business-phone-number-id}/register": {
-      "post": {
-        "tags": ["Registration"],
-        "summary": "Migrate Account",
-        "description": "To migrate your account, make a **POST** call to the **`/{{Phone-Number-ID}}/register`** endpoint and include the parameters listed below. \n\nYour request may take as long as 15 seconds to finish. During this period, your on-premise deployment is automatically disconnected from WhatsApp server and shutdown; the business account will start up in the cloud-hosted service at the same time. After the request finishes successfully, you can send messages immediately.\n\n## Request Parameters\n| Name                  | Description               |\n|-----------------------|---------------------------|\n|**`messaging_product`**| **Required**.<br/>Messaging service used for the request. For account migration, always use `\"whatsapp\"`. \n| **`pin`**             |**Required**.<br/>A 6-digit pin you have previously set up — See [Set Two-Step Verification](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/two-step-verification) If you use the wrong pin, your on-premise deployment will be down and will be disconnected from the WhatsApp servers.<br/>If you haven't set up or you have disabled two-step verification, provide a random 6-digit pin in the request, and this will be used to enable two-step verification in the WhatsApp Business Cloud-Based API. |\n|**`backup.data`** | **Required**.<br/>The data value you get when you backup your on-premise deployment. This contains the account registration info and application settings. <br/>For more information, see [Backup and Restore](https://developers.facebook.com/docs/whatsapp/api/settings/backup-and-restore) to backup your on-premise implementation. |\n|**`backup.password`** | **Required**.<br/>The password you used in the backup API of your On-Premise deployment.|",
-        "operationId": "migrateAccount",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "messaging_product": {
-                    "type": "string",
-                    "example": "whatsapp"
-                  },
-                  "pin": {
-                    "type": "string",
-                    "example": "123456"
-                  }
-                }
-              },
-              "examples": {
-                "Migrate Account": {
-                  "value": {
-                    "backup": {
-                      "data": "BACKUP_DATA",
-                      "password": "P455w0rd##"
-                    },
-                    "messaging_product": "whatsapp",
-                    "pin": "123678"
-                  }
-                },
-                "Register Phone": {
-                  "value": {
-                    "messaging_product": "whatsapp",
-                    "pin": "123456"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Migrate Account / Register Phone",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "example": "true",
-                      "anyOf": [
-                        {
-                          "type": "string",
-                          "example": "true"
-                        },
-                        {
-                          "type": "boolean",
-                          "example": true
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Migrate Account": {
-                    "value": {
-                      "success": "true"
-                    }
-                  },
-                  "Register Phone": {
-                    "value": {
-                      "success": true
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "business-phone-number-id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
-    "/{api-version}/{business-phone-number-id}/business_compliance_info": {
+    "/{business-phone-number-id}/business_compliance_info": {
       "get": {
         "tags": ["Business Compliance"],
         "summary": "Get India-based business compliance info",
@@ -584,14 +482,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -602,7 +493,7 @@
         }
       ]
     },
-    "/{api-version}/app/uploads/": {
+    "/app/uploads/": {
       "post": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Create an Upload Session",
@@ -674,7 +565,7 @@
         }
       ]
     },
-    "/{api-version}/{upload-id}": {
+    "/{upload-id}": {
       "get": {
         "tags": ["Business Profiles"],
         "summary": "Resumable Upload - Query File Upload Status",
@@ -764,14 +655,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "upload-id",
           "in": "path",
@@ -782,7 +666,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/whatsapp_business_profile": {
+    "/{business-phone-number-id}/whatsapp_business_profile": {
       "get": {
         "tags": ["Business Profiles"],
         "summary": "Get Business Profile",
@@ -1081,14 +965,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1099,7 +976,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/deregister": {
+    "/{business-phone-number-id}/deregister": {
       "post": {
         "tags": ["Registration"],
         "summary": "Deregister Phone",
@@ -1123,14 +1000,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1141,7 +1011,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/media": {
+    "/{business-phone-number-id}/media": {
       "post": {
         "tags": ["Media"],
         "summary": "Upload Image",
@@ -1232,14 +1102,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1250,7 +1113,7 @@
         }
       ]
     },
-    "/{api-version}/{media-id}": {
+    "/{media-id}": {
       "get": {
         "tags": ["Media"],
         "summary": "Retrieve Media URL",
@@ -1319,14 +1182,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "media-id",
           "in": "path",
@@ -1337,7 +1193,7 @@
         }
       ]
     },
-    "/{api-version}/{media-id}/": {
+    "/{media-id}/": {
       "delete": {
         "tags": ["Media"],
         "summary": "Delete Media",
@@ -1381,14 +1237,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "media-id",
           "in": "path",
@@ -1399,7 +1248,7 @@
         }
       ]
     },
-    "/{api-version}/{media-url}": {
+    "/{media-url}": {
       "get": {
         "tags": ["Media"],
         "summary": "Download Media",
@@ -1421,14 +1270,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "media-url",
           "in": "path",
@@ -1439,7 +1281,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/messages": {
+    "/{business-phone-number-id}/messages": {
       "put": {
         "tags": ["Messages"],
         "summary": "Mark Message As Read",
@@ -3317,14 +3159,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3335,7 +3170,7 @@
         }
       ]
     },
-    "/{api-version}/{waba-id}/phone_numbers": {
+    "/{waba-id}/phone_numbers": {
       "get": {
         "tags": ["Phone Numbers"],
         "summary": "Get Phone Numbers",
@@ -3415,14 +3250,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "waba-id",
           "in": "path",
@@ -3433,7 +3261,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}": {
+    "/{business-phone-number-id}": {
       "get": {
         "tags": ["Phone Numbers"],
         "summary": "Get Phone Number By ID",
@@ -3555,14 +3383,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3573,7 +3394,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/request_code": {
+    "/{business-phone-number-id}/request_code": {
       "post": {
         "tags": ["Phone Numbers"],
         "summary": "Request Verification Code",
@@ -3633,14 +3454,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3651,7 +3465,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/verify_code": {
+    "/{business-phone-number-id}/verify_code": {
       "post": {
         "tags": ["Phone Numbers"],
         "summary": "Verify Code",
@@ -3706,14 +3520,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3724,7 +3531,7 @@
         }
       ]
     },
-    "/{api-version}/debug_token": {
+    "/debug_token": {
       "get": {
         "tags": ["WhatsApp Business Accounts"],
         "summary": "Get Shared WABA ID",
@@ -3901,7 +3708,7 @@
         }
       ]
     },
-    "/{api-version}/{business-id}/client_whatsapp_business_accounts": {
+    "/{business-id}/client_whatsapp_business_accounts": {
       "get": {
         "tags": ["WhatsApp Business Accounts"],
         "summary": "Get List of Shared WABAs",
@@ -4025,14 +3832,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-id",
           "in": "path",
@@ -4043,7 +3843,7 @@
         }
       ]
     },
-    "/{api-version}/{waba-id}/subscribed_apps": {
+    "/{waba-id}/subscribed_apps": {
       "get": {
         "tags": ["WABA Subscriptions"],
         "summary": "Get All Subscriptions for a WABA",
@@ -4270,14 +4070,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "waba-id",
           "in": "path",
@@ -4383,18 +4176,22 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "required": ["asset_type", "file", "name"],
                 "properties": {
                   "asset_type": {
                     "type": "string",
+                    "enum": ["FLOW_JSON"],
                     "example": "FLOW_JSON"
                   },
                   "file": {
                     "type": "string",
-                    "format": "binary"
+                    "format": "binary",
+                    "description": "The flow JSON file to upload"
                   },
                   "name": {
                     "type": "string",
-                    "example": "flow.json"
+                    "example": "flow.json",
+                    "description": "Name of the flow file"
                   }
                 }
               }
@@ -5732,120 +5529,6 @@
         }
       ]
     },
-    "/{waba-id}/phone_numbers": {
-      "get": {
-        "tags": ["Send Flow via Cloud API"],
-        "summary": "Get WABA Phone Numbers",
-        "description": "Gets the phone numbers linked to the WABA",
-        "operationId": "getWabaPhoneNumbers",
-        "responses": {
-          "200": {
-            "description": "Get WABA Phone Numbers",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "code_verification_status": {
-                            "type": "string",
-                            "example": "EXPIRED"
-                          },
-                          "display_phone_number": {
-                            "type": "string",
-                            "example": "+1 555-555-5555"
-                          },
-                          "id": {
-                            "type": "string",
-                            "example": "phone-1"
-                          },
-                          "quality_rating": {
-                            "type": "string",
-                            "example": "GREEN"
-                          },
-                          "thread_limit_per_day": {
-                            "type": "number",
-                            "example": 250
-                          },
-                          "verified_name": {
-                            "type": "string",
-                            "example": "My phone number"
-                          }
-                        }
-                      },
-                      "example": [
-                        {
-                          "code_verification_status": "EXPIRED",
-                          "display_phone_number": "+1 555-555-5555",
-                          "id": "phone-1",
-                          "quality_rating": "GREEN",
-                          "thread_limit_per_day": 250,
-                          "verified_name": "My phone number"
-                        }
-                      ]
-                    },
-                    "paging": {
-                      "type": "object",
-                      "properties": {
-                        "cursors": {
-                          "type": "object",
-                          "properties": {
-                            "after": {
-                              "type": "string",
-                              "example": "QVFIU..."
-                            },
-                            "before": {
-                              "type": "string",
-                              "example": "QVFIU..."
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Get WABA Phone Numbers": {
-                    "value": {
-                      "data": [
-                        {
-                          "code_verification_status": "EXPIRED",
-                          "display_phone_number": "+1 555-555-5555",
-                          "id": "phone-1",
-                          "quality_rating": "GREEN",
-                          "thread_limit_per_day": 250,
-                          "verified_name": "My phone number"
-                        }
-                      ],
-                      "paging": {
-                        "cursors": {
-                          "after": "QVFIU...",
-                          "before": "QVFIU..."
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "waba-id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
     "/{business-phone-number-id}/register": {
       "post": {
         "tags": ["Send Flow via Cloud API"],
@@ -5896,705 +5579,7 @@
         }
       ]
     },
-    "/{business-phone-number-id}/messages": {
-      "post": {
-        "tags": ["Send Flow via Cloud API"],
-        "summary": "Send Draft Flow by Name",
-        "description": "Flow messages won't be delivered to unsupported WhatsApp versions",
-        "operationId": "sendDraftFlowByName",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "messaging_product": {
-                    "type": "string",
-                    "example": "whatsapp"
-                  },
-                  "template": {
-                    "type": "object",
-                    "properties": {
-                      "components": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "index": {
-                              "type": "string",
-                              "example": "0"
-                            },
-                            "parameters": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "action": {
-                                    "type": "object",
-                                    "properties": {
-                                      "flow_action_data": {
-                                        "type": "object",
-                                        "properties": {
-                                          "<CUSTOM_KEY>": {
-                                            "type": "string",
-                                            "example": "<CUSTOM_VALUE>"
-                                          }
-                                        }
-                                      },
-                                      "flow_token": {
-                                        "type": "string",
-                                        "example": "<FLOW_TOKEN>"
-                                      }
-                                    }
-                                  },
-                                  "type": {
-                                    "type": "string",
-                                    "example": "action"
-                                  }
-                                }
-                              },
-                              "example": [
-                                {
-                                  "action": {
-                                    "flow_action_data": {
-                                      "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                                    },
-                                    "flow_token": "<FLOW_TOKEN>"
-                                  },
-                                  "type": "action"
-                                }
-                              ]
-                            },
-                            "sub_type": {
-                              "type": "string",
-                              "example": "flow"
-                            },
-                            "type": {
-                              "type": "string",
-                              "example": "button"
-                            }
-                          }
-                        },
-                        "example": [
-                          {
-                            "index": "0",
-                            "parameters": [
-                              {
-                                "action": {
-                                  "flow_action_data": {
-                                    "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                                  },
-                                  "flow_token": "<FLOW_TOKEN>"
-                                },
-                                "type": "action"
-                              }
-                            ],
-                            "sub_type": "flow",
-                            "type": "button"
-                          }
-                        ]
-                      },
-                      "language": {
-                        "type": "object",
-                        "properties": {
-                          "code": {
-                            "type": "string",
-                            "example": "en_US"
-                          }
-                        }
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "<TEMPLATE_NAME>"
-                      }
-                    }
-                  },
-                  "to": {
-                    "type": "string",
-                    "example": "{{customer-phone-number}}"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "template"
-                  }
-                }
-              },
-              "examples": {
-                "Send Draft Flow by ID": {
-                  "value": {
-                    "interactive": {
-                      "action": {
-                        "name": "flow",
-                        "parameters": {
-                          "flow_action": "navigate",
-                          "flow_action_payload": {
-                            "data": {
-                              "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                            },
-                            "screen": "<SCREEN_ID>"
-                          },
-                          "flow_cta": "Not shown in draft mode",
-                          "flow_id": "{{flow-id}}",
-                          "flow_message_version": "3",
-                          "flow_token": "<FLOW_TOKEN>",
-                          "mode": "draft"
-                        }
-                      },
-                      "body": {
-                        "text": "Not shown in draft mode"
-                      },
-                      "footer": {
-                        "text": "Not shown in draft mode"
-                      },
-                      "header": {
-                        "text": "Not shown in draft mode",
-                        "type": "text"
-                      },
-                      "type": "flow"
-                    },
-                    "messaging_product": "whatsapp",
-                    "recipient_type": "individual",
-                    "to": "{{customer-phone-number}}",
-                    "type": "interactive"
-                  }
-                },
-                "Send Draft Flow by Name": {
-                  "value": {
-                    "interactive": {
-                      "action": {
-                        "name": "flow",
-                        "parameters": {
-                          "flow_action": "navigate",
-                          "flow_action_payload": {
-                            "data": {
-                              "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                            },
-                            "screen": "<SCREEN_ID>"
-                          },
-                          "flow_cta": "Not shown in draft mode",
-                          "flow_message_version": "3",
-                          "flow_name": "{{flow-name}}",
-                          "flow_token": "<FLOW_TOKEN>",
-                          "mode": "draft"
-                        }
-                      },
-                      "body": {
-                        "text": "Not shown in draft mode"
-                      },
-                      "footer": {
-                        "text": "Not shown in draft mode"
-                      },
-                      "header": {
-                        "text": "Not shown in draft mode",
-                        "type": "text"
-                      },
-                      "type": "flow"
-                    },
-                    "messaging_product": "whatsapp",
-                    "recipient_type": "individual",
-                    "to": "{{customer-phone-number}}",
-                    "type": "interactive"
-                  }
-                },
-                "Send Flow Template Message": {
-                  "value": {
-                    "messaging_product": "whatsapp",
-                    "template": {
-                      "components": [
-                        {
-                          "index": "0",
-                          "parameters": [
-                            {
-                              "action": {
-                                "flow_action_data": {
-                                  "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                                },
-                                "flow_token": "<FLOW_TOKEN>"
-                              },
-                              "type": "action"
-                            }
-                          ],
-                          "sub_type": "flow",
-                          "type": "button"
-                        }
-                      ],
-                      "language": {
-                        "code": "en_US"
-                      },
-                      "name": "<TEMPLATE_NAME>"
-                    },
-                    "to": "{{customer-phone-number}}",
-                    "type": "template"
-                  }
-                },
-                "Send Published Flow by ID": {
-                  "value": {
-                    "interactive": {
-                      "action": {
-                        "name": "flow",
-                        "parameters": {
-                          "flow_action": "navigate",
-                          "flow_action_payload": {
-                            "data": {
-                              "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                            },
-                            "screen": "<SCREEN_ID>"
-                          },
-                          "flow_cta": "Open Flow!",
-                          "flow_id": "{{flow-id}}",
-                          "flow_message_version": "3",
-                          "flow_token": "<FLOW_TOKEN>"
-                        }
-                      },
-                      "body": {
-                        "text": "<BODY_TEXT>"
-                      },
-                      "footer": {
-                        "text": "<FOOTER_TEXT>"
-                      },
-                      "header": {
-                        "text": "<HEADER_TEXT>",
-                        "type": "text"
-                      },
-                      "type": "flow"
-                    },
-                    "messaging_product": "whatsapp",
-                    "recipient_type": "individual",
-                    "to": "{{customer-phone-number}}",
-                    "type": "interactive"
-                  }
-                },
-                "Send Published Flow by Name": {
-                  "value": {
-                    "interactive": {
-                      "action": {
-                        "name": "flow",
-                        "parameters": {
-                          "flow_action": "navigate",
-                          "flow_action_payload": {
-                            "data": {
-                              "<CUSTOM_KEY>": "<CUSTOM_VALUE>"
-                            },
-                            "screen": "<SCREEN_ID>"
-                          },
-                          "flow_cta": "Open Flow!",
-                          "flow_message_version": "3",
-                          "flow_name": "{{flow-name}}",
-                          "flow_token": "<FLOW_TOKEN>"
-                        }
-                      },
-                      "body": {
-                        "text": "<BODY_TEXT>"
-                      },
-                      "footer": {
-                        "text": "<FOOTER_TEXT>"
-                      },
-                      "header": {
-                        "text": "<HEADER_TEXT>",
-                        "type": "text"
-                      },
-                      "type": "flow"
-                    },
-                    "messaging_product": "whatsapp",
-                    "recipient_type": "individual",
-                    "to": "{{customer-phone-number}}",
-                    "type": "interactive"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Send Draft Flow by Name / Send Draft Flow by ID / Send Published Flow by Name / Send Published Flow by ID / Send Flow Template Message",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "contacts": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "input": {
-                            "type": "string",
-                            "example": "18055555555"
-                          },
-                          "wa_id": {
-                            "type": "string",
-                            "example": "18055555555"
-                          }
-                        }
-                      },
-                      "example": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ]
-                    },
-                    "messages": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string",
-                            "example": "wamid.HBgL..."
-                          }
-                        }
-                      },
-                      "example": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ]
-                    },
-                    "messaging_product": {
-                      "type": "string",
-                      "example": "whatsapp"
-                    }
-                  }
-                },
-                "examples": {
-                  "Send Draft Flow by ID": {
-                    "value": {
-                      "contacts": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ],
-                      "messages": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ],
-                      "messaging_product": "whatsapp"
-                    }
-                  },
-                  "Send Draft Flow by Name": {
-                    "value": {
-                      "contacts": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ],
-                      "messages": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ],
-                      "messaging_product": "whatsapp"
-                    }
-                  },
-                  "Send Flow Template Message": {
-                    "value": {
-                      "contacts": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ],
-                      "messages": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ],
-                      "messaging_product": "whatsapp"
-                    }
-                  },
-                  "Send Published Flow by ID": {
-                    "value": {
-                      "contacts": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ],
-                      "messages": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ],
-                      "messaging_product": "whatsapp"
-                    }
-                  },
-                  "Send Published Flow by Name": {
-                    "value": {
-                      "contacts": [
-                        {
-                          "input": "18055555555",
-                          "wa_id": "18055555555"
-                        }
-                      ],
-                      "messages": [
-                        {
-                          "id": "wamid.HBgL..."
-                        }
-                      ],
-                      "messaging_product": "whatsapp"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "business-phone-number-id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
-    "/{waba-id}/message_templates": {
-      "post": {
-        "tags": ["Send Flow via Cloud API"],
-        "summary": "Create Flow Template Message by Name",
-        "description": "Create Flow Template Message by Name",
-        "operationId": "createFlowTemplateMessageByName",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "category": {
-                    "type": "string",
-                    "example": "MARKETING"
-                  },
-                  "components": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "buttons": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "flow_action": {
-                                "type": "string",
-                                "example": "navigate"
-                              },
-                              "flow_id": {
-                                "type": "string",
-                                "example": "{{flow-id}}"
-                              },
-                              "navigate_screen": {
-                                "type": "string",
-                                "example": "<SCREEN_ID>"
-                              },
-                              "text": {
-                                "type": "string",
-                                "example": "Check out this offer!"
-                              },
-                              "type": {
-                                "type": "string",
-                                "example": "FLOW"
-                              }
-                            }
-                          },
-                          "example": [
-                            {
-                              "flow_action": "navigate",
-                              "flow_id": "{{flow-id}}",
-                              "navigate_screen": "<SCREEN_ID>",
-                              "text": "Check out this offer!",
-                              "type": "FLOW"
-                            }
-                          ]
-                        },
-                        "text": {
-                          "type": "string",
-                          "example": "Check out this new offer"
-                        },
-                        "type": {
-                          "type": "string",
-                          "example": "body"
-                        }
-                      }
-                    },
-                    "example": [
-                      {
-                        "text": "Check out this new offer",
-                        "type": "body"
-                      },
-                      {
-                        "buttons": [
-                          {
-                            "flow_action": "navigate",
-                            "flow_id": "{{flow-id}}",
-                            "navigate_screen": "<SCREEN_ID>",
-                            "text": "Check out this offer!",
-                            "type": "FLOW"
-                          }
-                        ],
-                        "type": "BUTTONS"
-                      }
-                    ]
-                  },
-                  "language": {
-                    "type": "string",
-                    "example": "en_US"
-                  },
-                  "name": {
-                    "type": "string",
-                    "example": "<TEMPLATE_NAME>"
-                  }
-                }
-              },
-              "examples": {
-                "Create Flow Template Message by Flow JSON": {
-                  "value": {
-                    "category": "MARKETING",
-                    "components": [
-                      {
-                        "text": "Check out this new offer",
-                        "type": "body"
-                      },
-                      {
-                        "buttons": [
-                          {
-                            "flow_action": "navigate",
-                            "flow_json": "{\"version\":\"5.0\",\"screens\":[{\"id\":\"WELCOME_SCREEN\",\"layout\":{\"type\":\"SingleColumnLayout\",\"children\":[{\"type\":\"TextHeading\",\"text\":\"Hello World\"},{\"type\":\"Footer\",\"label\":\"Complete\",\"on-click-action\":{\"name\":\"complete\",\"payload\":{}}}]},\"title\":\"Welcome\",\"terminal\":true,\"success\":true,\"data\":{}}]}",
-                            "navigate_screen": "WELCOME_SCREEN",
-                            "text": "Check out this offer!",
-                            "type": "FLOW"
-                          }
-                        ],
-                        "type": "BUTTONS"
-                      }
-                    ],
-                    "language": "en_US",
-                    "name": "<TEMPLATE_NAME>"
-                  }
-                },
-                "Create Flow Template Message by ID": {
-                  "value": {
-                    "category": "MARKETING",
-                    "components": [
-                      {
-                        "text": "Check out this new offer",
-                        "type": "body"
-                      },
-                      {
-                        "buttons": [
-                          {
-                            "flow_action": "navigate",
-                            "flow_id": "{{flow-id}}",
-                            "navigate_screen": "<SCREEN_ID>",
-                            "text": "Check out this offer!",
-                            "type": "FLOW"
-                          }
-                        ],
-                        "type": "BUTTONS"
-                      }
-                    ],
-                    "language": "en_US",
-                    "name": "<TEMPLATE_NAME>"
-                  }
-                },
-                "Create Flow Template Message by Name": {
-                  "value": {
-                    "category": "MARKETING",
-                    "components": [
-                      {
-                        "text": "Check out this new offer",
-                        "type": "body"
-                      },
-                      {
-                        "buttons": [
-                          {
-                            "flow_action": "navigate",
-                            "flow_name": "{{flow-name}}",
-                            "navigate_screen": "<SCREEN_ID>",
-                            "text": "Check out this offer!",
-                            "type": "FLOW"
-                          }
-                        ],
-                        "type": "BUTTONS"
-                      }
-                    ],
-                    "language": "en_US",
-                    "name": "<TEMPLATE_NAME>"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Create Flow Template Message by Name / Create Flow Template Message by Flow JSON / Create Flow Template Message by ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "category": {
-                      "type": "string",
-                      "example": "MARKETING"
-                    },
-                    "id": {
-                      "type": "string",
-                      "example": "template-1"
-                    },
-                    "status": {
-                      "type": "string",
-                      "example": "PENDING"
-                    }
-                  }
-                },
-                "examples": {
-                  "Create Flow Template Message by Flow JSON": {
-                    "value": {
-                      "category": "MARKETING",
-                      "id": "template-1",
-                      "status": "PENDING"
-                    }
-                  },
-                  "Create Flow Template Message by ID": {
-                    "value": {
-                      "category": "MARKETING",
-                      "id": "template-1",
-                      "status": "PENDING"
-                    }
-                  },
-                  "Create Flow Template Message by Name": {
-                    "value": {
-                      "category": "MARKETING",
-                      "id": "template-1",
-                      "status": "PENDING"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "waba-id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
-    "/{api-version}/{business-id}/extendedcredits": {
+    "/{business-id}/extendedcredits": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Extended Credits",
@@ -6650,14 +5635,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-id",
           "in": "path",
@@ -6668,7 +5646,7 @@
         }
       ]
     },
-    "/{api-version}/{credit-line-id}/owning_credit_allocation_configs": {
+    "/{credit-line-id}/owning_credit_allocation_configs": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Credit Line ID",
@@ -6690,14 +5668,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "credit-line-id",
           "in": "path",
@@ -6708,7 +5679,7 @@
         }
       ]
     },
-    "/{api-version}/{allocation-config-id}": {
+    "/{allocation-config-id}": {
       "get": {
         "tags": ["Lines of Credit"],
         "summary": "Credit Sharing Record ID",
@@ -6761,14 +5732,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "allocation-config-id",
           "in": "path",
@@ -6779,7 +5743,7 @@
         }
       ]
     },
-    "/{api-version}/{assigned-waba-id}": {
+    "/{assigned-waba-id}": {
       "get": {
         "tags": ["WhatsApp Business Accounts"],
         "summary": "WABA ID",
@@ -6874,14 +5838,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "assigned-waba-id",
           "in": "path",
@@ -6892,7 +5849,7 @@
         }
       ]
     },
-    "/{api-version}/{business-id}/owned_whatsapp_business_accounts": {
+    "/{business-id}/owned_whatsapp_business_accounts": {
       "get": {
         "tags": ["WhatsApp Business Accounts"],
         "summary": "Owned  and Client WABAs",
@@ -6917,14 +5874,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-id",
           "in": "path",
@@ -6935,7 +5885,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/message_qrdls/<QR_CODE_ID>": {
+    "/{business-phone-number-id}/message_qrdls/<QR_CODE_ID>": {
       "get": {
         "tags": ["QR codes"],
         "summary": "Get QR code",
@@ -7242,14 +6192,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -7260,7 +6203,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/message_qrdls": {
+    "/{business-phone-number-id}/message_qrdls": {
       "get": {
         "tags": ["QR codes"],
         "summary": "Get all QR codes (default fields)",
@@ -7649,14 +6592,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -7667,7 +6603,7 @@
         }
       ]
     },
-    "/{api-version}/{template-id}": {
+    "/{template-id}": {
       "get": {
         "tags": ["Templates"],
         "summary": "Get template by ID (default fields)",
@@ -8247,14 +7183,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "template-id",
           "in": "path",
@@ -8265,7 +7194,7 @@
         }
       ]
     },
-    "/{api-version}/{waba-id}/message_templates": {
+    "/{waba-id}/message_templates": {
       "get": {
         "tags": ["Templates"],
         "summary": "Get template by name (default fields)",
@@ -9373,14 +8302,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "waba-id",
           "in": "path",
@@ -9391,7 +8313,7 @@
         }
       ]
     },
-    "/{api-version}/{waba-id}": {
+    "/{waba-id}": {
       "get": {
         "tags": ["Analytics"],
         "summary": "Get namespace",
@@ -9756,14 +8678,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "waba-id",
           "in": "path",
@@ -9774,7 +8689,7 @@
         }
       ]
     },
-    "/{api-version}/{business-account-id}/extendedcredits": {
+    "/{business-account-id}/extendedcredits": {
       "get": {
         "tags": ["Billing"],
         "summary": "Get credit lines",
@@ -9830,14 +8745,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-account-id",
           "in": "path",
@@ -9848,7 +8756,7 @@
         }
       ]
     },
-    "/{api-version}/{business-phone-number-id}/whatsapp_commerce_settings": {
+    "/{business-phone-number-id}/whatsapp_commerce_settings": {
       "get": {
         "tags": ["Commerce"],
         "summary": "Get commerce settings",
@@ -10179,14 +9087,7 @@
         }
       },
       "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
+       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -10253,9 +9154,6 @@
     },
     {
       "name": "Lines of Credit"
-    },
-    {
-      "name": "WhatsApp Business Accounts"
     },
     {
       "name": "QR codes"
