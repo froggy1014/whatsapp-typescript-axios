@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.3.1
+
+### Patch Changes
+
+- eb48011: remove duplicated endpoint and fixed the version of graph facebook.com
+
 ## 1.3.0
 
 ### Minor Changes
