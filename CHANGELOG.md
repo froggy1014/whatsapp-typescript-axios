@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.4.1
+
+### Patch Changes
+
+- 2f6ea34: prepare script in package.json to use npm run generate and remove OpenAPI spec generation from GitHub Actions workflow
+
 ## 1.4.0
 
 ### Minor Changes
