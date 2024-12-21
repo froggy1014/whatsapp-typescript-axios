@@ -1,10 +1,11 @@
 {
   "name": "whatsapp-typescript-axios",
   "version": "1.4.1",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "commit": "cz",
-    "prepare": "npm run generate && tsc && husky",
+    "prepare": "husky",
     "generate": "openapi-generator-cli generate && tsc",
     "changeset": "changeset",
     "ci:version": "changeset version",
