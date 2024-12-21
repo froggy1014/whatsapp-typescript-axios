@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.4.2
+
+### Patch Changes
+
+- 224065e: update package.json main entry add OpenAPI spec generation to CI
+
 ## 1.4.1
 
 ### Patch Changes
