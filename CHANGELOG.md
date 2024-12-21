@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.3.2
+
+### Patch Changes
+
+- 4c35c9c: remove postinstall and generate openapi code before publish package
+
 ## 1.3.1
 
 ### Patch Changes
