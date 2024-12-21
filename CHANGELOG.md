@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.4.0
+
+### Minor Changes
+
+- c9f084d: configure TypeScript compilation for dist output
+
 ## 1.3.3
 
 ### Patch Changes
