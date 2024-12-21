@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.3.3
+
+### Patch Changes
+
+- d75c753: correct main target file, and files list
+
 ## 1.3.2
 
 ### Patch Changes
