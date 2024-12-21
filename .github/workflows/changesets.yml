@@ -31,10 +31,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step to generate OpenAPI spec
-      - name: Generate OpenAPI Spec
-        run: npm run generate
-
       - name: Create and publish versions
         uses: changesets/action@v1
         with:

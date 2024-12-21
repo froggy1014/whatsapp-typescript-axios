@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "scripts": {
     "commit": "cz",
-    "prepare": "openapi-generator-cli generate && tsc && husky",
+    "prepare": "npm run generate && tsc && husky",
     "generate": "openapi-generator-cli generate && tsc",
     "changeset": "changeset",
     "ci:version": "changeset version",
