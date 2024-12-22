@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.0
+
+### Minor Changes
+
+- 641d659: seperate message type by updating openapi.json manually
+
 ## 1.4.2
 
 ### Patch Changes
