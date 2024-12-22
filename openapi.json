@@ -482,7 +482,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -655,7 +654,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "upload-id",
           "in": "path",
@@ -965,7 +963,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1000,7 +997,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1102,7 +1098,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -1182,7 +1177,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "media-id",
           "in": "path",
@@ -1237,7 +1231,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "media-id",
           "in": "path",
@@ -1270,7 +1263,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "media-url",
           "in": "path",
@@ -1349,130 +1341,431 @@
         "tags": ["Messages"],
         "summary": "Send Text Message",
         "description": "To send a text message, make a **POST** call to **`/{{{Phone-Number-ID}}/messages`** and attach a message object with `type = \"text\"`. Then, add a `text object`.\n\nFor more information about the `Text Object` structure, see [Text object](#fa59d67b-dc6f-446a-a0fd-f97537afbd2e).\n\n## Response\n\nA successful response includes an object with an identifier prefixed with **`wamid`**. Use the ID listed after **`wamid`** to track your message status.",
-        "operationId": "sendTextMessage",
+        "operationId": "sendMessage",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "messaging_product": {
-                    "type": "string",
-                    "example": "whatsapp"
-                  },
-                  "recipient_type": {
-                    "type": "string",
-                    "example": "individual"
-                  },
-                  "template": {
-                    "type": "object",
+                "oneOf": [
+                  {
                     "properties": {
-                      "components": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "index": {
-                              "type": "number",
-                              "example": 0
-                            },
-                            "parameters": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "text": {
-                                    "type": "string",
-                                    "example": "100"
-                                  },
-                                  "type": {
-                                    "type": "string",
-                                    "example": "text"
-                                  }
-                                }
-                              },
-                              "example": [
-                                {
-                                  "text": "100",
-                                  "type": "text"
-                                },
-                                {
-                                  "text": "400",
-                                  "type": "text"
-                                },
-                                {
-                                  "text": "3",
-                                  "type": "text"
-                                }
-                              ]
-                            },
-                            "sub_type": {
-                              "type": "string",
-                              "example": "CATALOG"
-                            },
-                            "type": {
-                              "type": "string",
-                              "example": "body"
-                            }
-                          }
-                        },
-                        "example": [
-                          {
-                            "parameters": [
-                              {
-                                "text": "100",
-                                "type": "text"
-                              },
-                              {
-                                "text": "400",
-                                "type": "text"
-                              },
-                              {
-                                "text": "3",
-                                "type": "text"
-                              }
-                            ],
-                            "type": "body"
-                          },
-                          {
-                            "index": 0,
-                            "parameters": [
-                              {
-                                "action": {
-                                  "thumbnail_product_retailer_id": "2lc20305pt"
-                                },
-                                "type": "action"
-                              }
-                            ],
-                            "sub_type": "CATALOG",
-                            "type": "button"
-                          }
-                        ]
+                      "type": {
+                        "enum": ["text"]
                       },
-                      "language": {
-                        "type": "object",
+                      "text": {
+                        "required": ["body"],
                         "properties": {
-                          "code": {
-                            "type": "string",
-                            "example": "en_US"
+                          "body": {
+                            "type": "string"
+                          },
+                          "preview_url": {
+                            "type": "boolean"
                           }
                         }
                       },
-                      "name": {
+                      "messaging_product": {
                         "type": "string",
-                        "example": "intro_catalog_offer"
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
                       }
-                    }
+                    },
+                    "required": [
+                      "type",
+                      "text",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
                   },
-                  "to": {
-                    "type": "string",
-                    "example": "+16505551234"
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["reaction"]
+                      },
+                      "reaction": {
+                        "required": ["message_id", "emoji"],
+                        "properties": {
+                          "message_id": {
+                            "type": "string"
+                          },
+                          "emoji": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "reaction",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
                   },
-                  "type": {
-                    "type": "string",
-                    "example": "template"
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["image"]
+                      },
+                      "image": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string"
+                          }
+                        },
+                        "oneOf": [
+                          {
+                            "required": ["id"]
+                          },
+                          {
+                            "required": ["link"]
+                          }
+                        ]
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "image",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["audio"]
+                      },
+                      "audio": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        },
+                        "oneOf": [
+                          {
+                            "required": ["id"]
+                          },
+                          {
+                            "required": ["link"]
+                          }
+                        ]
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "audio",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["document"]
+                      },
+                      "document": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "link": {
+                            "type": "string"
+                          },
+                          "caption": {
+                            "type": "string"
+                          },
+                          "filename": {
+                            "type": "string"
+                          }
+                        },
+                        "oneOf": [
+                          {
+                            "required": ["id"]
+                          },
+                          {
+                            "required": ["link"]
+                          }
+                        ]
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "document",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["template"]
+                      },
+                      "template": {
+                        "required": ["name", "language"],
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "intro_catalog_offer"
+                          },
+                          "language": {
+                            "required": ["code"],
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "example": "en_US"
+                              }
+                            }
+                          },
+                          "components": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": ["header", "body", "button"]
+                                },
+                                "parameters": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "template",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["interactive"]
+                      },
+                      "interactive": {
+                        "required": ["type", "action"],
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "button",
+                              "list",
+                              "product",
+                              "product_list"
+                            ]
+                          },
+                          "header": {
+                            "type": "object",
+                            "properties": {
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "body": {
+                            "type": "object",
+                            "properties": {
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "footer": {
+                            "type": "object",
+                            "properties": {
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "action": {
+                            "type": "object",
+                            "properties": {
+                              "buttons": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "example": "reply"
+                                    },
+                                    "title": {
+                                      "type": "string",
+                                      "example": "Button Title"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "interactive",
+                      "messaging_product",
+                      "recipient_type",
+                      "to"
+                    ]
                   }
-                }
+                ]
               },
               "examples": {
                 "Send Audio Message by ID": {
@@ -3159,7 +3452,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3250,7 +3542,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "waba-id",
           "in": "path",
@@ -3383,7 +3674,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3454,7 +3744,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3520,7 +3809,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -3832,7 +4120,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-id",
           "in": "path",
@@ -4070,7 +4357,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "waba-id",
           "in": "path",
@@ -5635,7 +5921,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-id",
           "in": "path",
@@ -5668,7 +5953,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "credit-line-id",
           "in": "path",
@@ -5732,7 +6016,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "allocation-config-id",
           "in": "path",
@@ -5838,7 +6121,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "assigned-waba-id",
           "in": "path",
@@ -5874,7 +6156,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-id",
           "in": "path",
@@ -6192,7 +6473,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -6592,7 +6872,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
@@ -7183,7 +7462,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "template-id",
           "in": "path",
@@ -8302,7 +8580,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "waba-id",
           "in": "path",
@@ -8678,7 +8955,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "waba-id",
           "in": "path",
@@ -8745,7 +9021,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-account-id",
           "in": "path",
@@ -9087,7 +9362,6 @@
         }
       },
       "parameters": [
-       
         {
           "name": "business-phone-number-id",
           "in": "path",
