@@ -1332,6 +1332,23 @@
                   },
                   {
                     "properties": {
+                      "message_id": {
+                        "type": "string",
+                        "example": "wamid.234123"
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "read"
+                      }
+                    },
+                    "required": ["message_id", "messaging_product", "status"]
+                  },
+                  {
+                    "properties": {
                       "type": {
                         "enum": ["contacts"]
                       },
