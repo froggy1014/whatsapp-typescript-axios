@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.2
+
+### Patch Changes
+
+- d221f4e: add missing paremeter object in template message spec
+
 ## 1.5.1
 
 ### Patch Changes
