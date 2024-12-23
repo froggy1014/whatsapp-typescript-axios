@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.5
+
+### Patch Changes
+
+- c4958ec: add flow related spec on interactive message
+
 ## 1.5.4
 
 ### Patch Changes
