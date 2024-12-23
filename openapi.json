@@ -1845,10 +1845,11 @@
                           "type": {
                             "enum": [
                               "button",
-                              "list",
+                              "list", 
                               "product",
                               "product_list",
-                              "catalog_message"
+                              "catalog_message",
+                              "flow"
                             ]
                           },
                           "header": {
@@ -1863,23 +1864,6 @@
                                 "type": "string",
                                 "description": "Required if type is set to text. Text for the header. Formatting allows emojis, but not markdown.",
                                 "maxLength": 60
-                              },
-                              "sub_text": {
-                                "type": "string",
-                                "description": "Optional. Text for the header. Formatting allows emojis, but not markdown.",
-                                "maxLength": 60
-                              },
-                              "document": {
-                                "type": "object",
-                                "description": "Required if type is set to document. Contains the media object for this document."
-                              },
-                              "image": {
-                                "type": "object",
-                                "description": "Required if type is set to image. Contains the media object for this image."
-                              },
-                              "video": {
-                                "type": "object",
-                                "description": "Required if type is set to video. Contains the media object for this video."
                               }
                             }
                           },
@@ -1888,7 +1872,7 @@
                             "properties": {
                               "text": {
                                 "type": "string",
-                                "example": "Hello! Thanks for your interest. Ordering is easy. Just visit our catalog and add items to purchase."
+                                "description": "Required. The message body text."
                               }
                             }
                           },
@@ -1897,129 +1881,71 @@
                             "properties": {
                               "text": {
                                 "type": "string",
-                                "example": "Best grocery deals on WhatsApp!"
+                                "description": "Optional footer text."
                               }
                             }
                           },
                           "action": {
                             "type": "object",
                             "properties": {
-                              "button": {
+                              "name": {
                                 "type": "string",
-                                "maxLength": 20,
-                                "description": "Required for List Messages. Button content. Cannot be empty and must be unique within the message. Emojis supported, markdown is not."
+                                "enum": ["flow"],
+                                "description": "Required for Flow Messages. Must be 'flow'."
                               },
-                              "buttons": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "enum": ["reply"],
-                                      "description": "Only supported type is reply (for Reply Button)"
-                                    },
-                                    "title": {
-                                      "type": "string",
-                                      "maxLength": 20,
-                                      "description": "Button title. Cannot be empty and must be unique within message. Emojis supported, markdown is not."
-                                    },
-                                    "id": {
-                                      "type": "string",
-                                      "maxLength": 256,
-                                      "description": "Unique identifier for button. Returned in webhook when clicked. No leading/trailing spaces."
-                                    }
-                                  },
-                                  "required": ["type", "title", "id"]
-                                },
-                                "maxItems": 3,
-                                "description": "Required for Reply Buttons. Up to 3 buttons allowed."
-                              },
-                              "catalog_id": {
-                                "type": "string",
-                                "description": "Required for Single/Multi-Product Messages. Unique identifier of Facebook catalog linked to WhatsApp Business Account."
-                              },
-                              "product_retailer_id": {
-                                "type": "string",
-                                "description": "Required for Single/Multi-Product Messages. Unique identifier of product in catalog."
-                              },
-                              "sections": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "description": "Section object",
-                                  "properties": {
-                                    "title": {
-                                      "type": "string",
-                                      "maxLength": 24
-                                    },
-                                    "product_items": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "product_retailer_id": {
-                                            "type": "string",
-                                            "description": "Unique identifier of product in catalog"
-                                          }
-                                        },
-                                        "required": ["product_retailer_id"]
-                                      },
-                                      "minItems": 1,
-                                      "maxItems": 30
-                                    }
-                                  }
-                                },
-                                "minItems": 1,
-                                "maxItems": 10,
-                                "description": "Required for List Messages and Multi-Product Messages. Array of section objects."
-                              },
-                              "mode": {
-                                "type": "string",
-                                "enum": ["draft", "published"],
-                                "default": "published",
-                                "description": "Optional for Flows Messages. Current mode of the Flow."
-                              },
-                              "flow_message_version": {
-                                "type": "string",
-                                "enum": ["3"],
-                                "description": "Required for Flows Messages. Must be 3."
-                              },
-                              "flow_token": {
-                                "type": "string",
-                                "description": "Required for Flows Messages. Token generated by business as identifier."
-                              },
-                              "flow_id": {
-                                "type": "string",
-                                "description": "Required for Flows Messages. Unique identifier of Flow provided by WhatsApp."
-                              },
-                              "flow_cta": {
-                                "type": "string",
-                                "maxLength": 20,
-                                "description": "Required for Flows Messages. Text on CTA button. No emoji allowed."
-                              },
-                              "flow_action": {
-                                "type": "string",
-                                "enum": ["navigate", "data_exchange"],
-                                "default": "navigate",
-                                "description": "Optional for Flows Messages. Use navigate to predefine first screen, data_exchange for advanced cases."
-                              },
-                              "flow_action_payload": {
+                              "parameters": {
                                 "type": "object",
-                                "description": "Optional for Flows Messages. Required only if flow_action is navigate.",
                                 "properties": {
-                                  "screen": {
-                                    "type": "string",
-                                    "description": "Required. ID of first screen of Flow."
+                                  "mode": {
+                                    "type": "string", 
+                                    "enum": ["draft", "published"],
+                                    "default": "published",
+                                    "description": "Optional. The Flow mode."
                                   },
-                                  "data": {
+                                  "flow_message_version": {
+                                    "type": "string",
+                                    "enum": ["3"],
+                                    "description": "Required. Must be '3'."
+                                  },
+                                  "flow_token": {
+                                    "type": "string",
+                                    "description": "Required. Flow token generated by business as identifier."
+                                  },
+                                  "flow_id": {
+                                    "type": "string",
+                                    "description": "Required. Unique ID of Flow provided by WhatsApp."
+                                  },
+                                  "flow_cta": {
+                                    "type": "string",
+                                    "maxLength": 20,
+                                    "description": "Required. Text on CTA button. No emoji allowed."
+                                  },
+                                  "flow_action": {
+                                    "type": "string",
+                                    "enum": ["navigate", "data_exchange"],
+                                    "default": "navigate",
+                                    "description": "Optional. Use navigate to predefine first screen, data_exchange for advanced cases."
+                                  },
+                                  "flow_action_payload": {
                                     "type": "object",
-                                    "description": "Optional. Input data for first screen. Must be non-empty if provided."
+                                    "description": "Required only if flow_action is navigate.",
+                                    "properties": {
+                                      "screen": {
+                                        "type": "string",
+                                        "description": "Required. ID of first screen of Flow."
+                                      },
+                                      "data": {
+                                        "type": "object",
+                                        "description": "Optional. Input data for first screen. Must be non-empty if provided."
+                                      }
+                                    },
+                                    "required": ["screen"]
                                   }
                                 },
-                                "required": ["screen"]
+                                "required": ["flow_message_version", "flow_token", "flow_id", "flow_cta"]
                               }
-                            }
+                            },
+                            "required": ["name", "parameters"]
                           }
                         }
                       },
@@ -2047,7 +1973,7 @@
                     "required": [
                       "type",
                       "interactive",
-                      "messaging_product",
+                      "messaging_product", 
                       "recipient_type",
                       "to"
                     ]
