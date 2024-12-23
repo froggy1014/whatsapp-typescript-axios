@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.6
+
+### Patch Changes
+
+- eda7ef2: remove api-version parameter in openapi spec
+
 ## 1.5.5
 
 ### Patch Changes
