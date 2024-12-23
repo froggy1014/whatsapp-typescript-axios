@@ -1778,10 +1778,72 @@
                                   "type": "string",
                                   "enum": ["header", "body", "button"]
                                 },
+                                "sub_type": {
+                                  "type": "string",
+                                  "enum": ["quick_reply", "url", "phone_number"]
+                                },
+                                "index": {
+                                  "type": "string",
+                                  "description": "Button index (required for button type)"
+                                },
                                 "parameters": {
                                   "type": "array",
                                   "items": {
-                                    "type": "object"
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": [
+                                          "text",
+                                          "image",
+                                          "currency",
+                                          "date_time",
+                                          "document",
+                                          "video"
+                                        ],
+                                        "description": "Required. Describes the parameter type."
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "description": "Required when type=text. The message's text. Character limit varies based on included component type - 60 chars for header, 1024 chars for body with other components, 32768 chars for body only."
+                                      },
+                                      "image": {
+                                        "type": "object",
+                                        "description": "Required when type=image. A media object of type image. Captions not supported when used in a media template."
+                                      },
+                                      "currency": {
+                                        "type": "object",
+                                        "description": "Required when type=currency. A currency object.",
+                                        "properties": {
+                                          "fallback_value": {
+                                            "type": "string"
+                                          },
+                                          "code": {
+                                            "type": "string"
+                                          },
+                                          "amount_1000": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      },
+                                      "date_time": {
+                                        "type": "object",
+                                        "description": "Required when type=date_time. A date_time object.",
+                                        "properties": {
+                                          "fallback_value": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "document": {
+                                        "type": "object",
+                                        "description": "Required when type=document. A media object of type document. Only PDF documents are supported for media-based message templates. Captions not supported when used in a media template."
+                                      },
+                                      "video": {
+                                        "type": "object",
+                                        "description": "Required when type=video. A media object of type video. Captions not supported when used in a media template."
+                                      }
+                                    }
                                   }
                                 }
                               }
