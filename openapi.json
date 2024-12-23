@@ -1274,73 +1274,10 @@
       ]
     },
     "/{business-phone-number-id}/messages": {
-      "put": {
-        "tags": ["Messages"],
-        "summary": "Mark Message As Read",
-        "description": "When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.  \nWe recommend marking incoming messages as read within 30 days of receipt.  \n**Note**: you cannot mark outgoing messages you sent as read.\n\nYou need to obtain the **`message_id`** of the incoming message from Webhooks.\n\nFor a more in depth guide for marking messages as read, see [Guide: Mark Messages as Read](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/mark-message-as-read).",
-        "operationId": "markMessageAsRead",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message_id": {
-                    "type": "string",
-                    "example": "wamid.234123"
-                  },
-                  "messaging_product": {
-                    "type": "string",
-                    "example": "whatsapp"
-                  },
-                  "status": {
-                    "type": "string",
-                    "example": "read"
-                  }
-                }
-              },
-              "examples": {
-                "Mark Message As Read": {
-                  "value": {
-                    "message_id": "wamid.234123",
-                    "messaging_product": "whatsapp",
-                    "status": "read"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Mark Message As Read",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                },
-                "examples": {
-                  "Mark Message As Read": {
-                    "value": {
-                      "success": true
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "post": {
         "tags": ["Messages"],
-        "summary": "Send Text Message",
-        "description": "To send a text message, make a **POST** call to **`/{{{Phone-Number-ID}}/messages`** and attach a message object with `type = \"text\"`. Then, add a `text object`.\n\nFor more information about the `Text Object` structure, see [Text object](#fa59d67b-dc6f-446a-a0fd-f97537afbd2e).\n\n## Response\n\nA successful response includes an object with an identifier prefixed with **`wamid`**. Use the ID listed after **`wamid`** to track your message status.",
+        "summary": "Send Message",
+        "description": "Send various types of messages like text, media, templates and more using the WhatsApp Cloud API. For detailed information about message types and examples, see [Send Messages Guide](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages).\n\nA successful response includes a **`wamid`** identifier that can be used to track message status. Messages can be marked as read within 30 days of receipt using the messages endpoint.\n\n**Note**: Only incoming messages can be marked as read.",
         "operationId": "sendMessage",
         "requestBody": {
           "content": {
@@ -2238,6 +2175,13 @@
                 ]
               },
               "examples": {
+                "Mark Message As Read": {
+                  "value": {
+                    "message_id": "wamid.234123",
+                    "messaging_product": "whatsapp",
+                    "status": "read"
+                  }
+                },
                 "Send Audio Message by ID": {
                   "value": {
                     "audio": {
@@ -3913,6 +3857,11 @@
                         }
                       ],
                       "messaging_product": "whatsapp"
+                    }
+                  },
+                  "Mark Message As Read": {
+                    "value": {
+                      "success": true
                     }
                   }
                 }
