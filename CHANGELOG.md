@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.1
+
+### Patch Changes
+
+- 8ecf912: add location, media, contacts object in message api
+
 ## 1.5.0
 
 ### Minor Changes
