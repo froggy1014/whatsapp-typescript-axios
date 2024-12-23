@@ -552,17 +552,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/{upload-id}": {
       "get": {
@@ -1845,7 +1835,7 @@
                           "type": {
                             "enum": [
                               "button",
-                              "list", 
+                              "list",
                               "product",
                               "product_list",
                               "catalog_message",
@@ -1897,7 +1887,7 @@
                                 "type": "object",
                                 "properties": {
                                   "mode": {
-                                    "type": "string", 
+                                    "type": "string",
                                     "enum": ["draft", "published"],
                                     "default": "published",
                                     "description": "Optional. The Flow mode."
@@ -1942,7 +1932,12 @@
                                     "required": ["screen"]
                                   }
                                 },
-                                "required": ["flow_message_version", "flow_token", "flow_id", "flow_cta"]
+                                "required": [
+                                  "flow_message_version",
+                                  "flow_token",
+                                  "flow_id",
+                                  "flow_cta"
+                                ]
                               }
                             },
                             "required": ["name", "parameters"]
@@ -1973,7 +1968,7 @@
                     "required": [
                       "type",
                       "interactive",
-                      "messaging_product", 
+                      "messaging_product",
                       "recipient_type",
                       "to"
                     ]
@@ -4346,17 +4341,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "name": "api-version",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/{business-id}/client_whatsapp_business_accounts": {
       "get": {
@@ -7525,14 +7510,6 @@
           }
         },
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "template-id",
             "in": "path",
