@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.3
+
+### Patch Changes
+
+- 5a50410: correct wrong method on mark as read api
+
 ## 1.5.2
 
 ### Patch Changes
