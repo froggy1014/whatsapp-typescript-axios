@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.4
+
+### Patch Changes
+
+- 76389d3: add mark as read property in message api
+
 ## 1.5.3
 
 ### Patch Changes
