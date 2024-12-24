@@ -7374,21 +7374,37 @@
                               "type": "object",
                               "properties": {
                                 "text": {
-                                  "type": "string",
-                                  "example": "Stop promotions"
+                                  "type": "string", 
+                                  "example": "Manage Payment"
                                 },
                                 "type": {
                                   "type": "string",
-                                  "example": "QUICK_REPLY"
+                                  "example": "URL"
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "example": "https://cloudhospital-int-dc.com/{{1}}"
+                                },
+                                "flow_id": {
+                                  "type": "string",
+                                  "example": "471155329337058"
+                                },
+                                "flow_action": {
+                                  "type": "string", 
+                                  "example": "DATA_EXCHANGE"
+                                },
+                                "example": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "example": [
+                                    "Manage Payment",
+                                    "https://cloudhospital-int-dc.com/{{1}}"
+                                  ]
                                 }
                               }
-                            },
-                            "example": [
-                              {
-                                "text": "Stop promotions",
-                                "type": "QUICK_REPLY"
-                              }
-                            ]
+                            }
                           },
                           "example": {
                             "type": "object",
