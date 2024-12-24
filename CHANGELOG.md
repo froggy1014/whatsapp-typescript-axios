@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.7
+
+### Patch Changes
+
+- e0bd372: add missing fields in button properties in button component
+
 ## 1.5.6
 
 ### Patch Changes
