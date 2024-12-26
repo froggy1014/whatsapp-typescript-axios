@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.9
+
+### Patch Changes
+
+- 8817355: change operationId of POST message_templates
+
 ## 1.5.8
 
 ### Patch Changes
