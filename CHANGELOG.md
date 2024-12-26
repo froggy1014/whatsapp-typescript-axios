@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.11
+
+### Patch Changes
+
+- bfd704c: remove analitics endpoint, enhanse /{waba-id} endpoint
+
 ## 1.5.10
 
 ### Patch Changes
