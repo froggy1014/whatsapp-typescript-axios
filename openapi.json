@@ -7374,7 +7374,7 @@
                               "type": "object",
                               "properties": {
                                 "text": {
-                                  "type": "string", 
+                                  "type": "string",
                                   "example": "Manage Payment"
                                 },
                                 "type": {
@@ -7390,7 +7390,7 @@
                                   "example": "471155329337058"
                                 },
                                 "flow_action": {
-                                  "type": "string", 
+                                  "type": "string",
                                   "example": "DATA_EXCHANGE"
                                 },
                                 "example": {
@@ -8215,7 +8215,7 @@
       },
       "post": {
         "tags": ["Templates"],
-        "summary": "Create authentication template w/ OTP copy code button",
+        "summary": "Create template",
         "description": "- Guide: [Authentication Templates with OTP Buttons](https://developers.facebook.com/docs/whatsapp/business-management-api/authentication-templates)\n- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)",
         "operationId": "createAuthenticationTemplateWOtpCopyCodeButton",
         "requestBody": {
