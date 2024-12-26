@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.8
+
+### Patch Changes
+
+- 761814d: correct name of summary of /message_templates post
+
 ## 1.5.7
 
 ### Patch Changes
