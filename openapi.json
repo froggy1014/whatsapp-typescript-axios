@@ -8231,28 +8231,52 @@
                   "components": {
                     "type": "array",
                     "items": {
-                      "type": "object",
+                      "type": "object", 
                       "properties": {
                         "buttons": {
                           "type": "array",
                           "items": {
                             "type": "object",
                             "properties": {
+                              "example": {
+                                "type": "string",
+                                "example": "SAVE10",
+                                "maxLength": 15
+                              },
+                              "flow_id": {
+                                "type": "string",
+                                "example": "123456789"
+                              },
+                              "flow_json": {
+                                "type": "string",
+                                "example": "{\"version\": \"3.1\", \"screens\": [...]}"
+                              },
+                              "flow_action": {
+                                "type": "string",
+                                "enum": ["navigate", "data_exchange"]
+                              },
+                              "navigate_screen": {
+                                "type": "string",
+                                "example": "checkout"
+                              },
                               "phone_number": {
                                 "type": "string",
-                                "example": "16467043595"
+                                "example": "16467043595",
+                                "maxLength": 20
                               },
                               "text": {
-                                "type": "string",
-                                "example": "Call"
+                                "type": "string", 
+                                "example": "Call Support",
+                                "maxLength": 25
                               },
                               "type": {
                                 "type": "string",
-                                "example": "PHONE_NUMBER"
+                                "enum": ["COPY_CODE", "FLOW", "PHONE_NUMBER", "QUICK_REPLY", "URL"]
                               },
                               "url": {
                                 "type": "string",
-                                "example": "https://www.examplesite.com/support"
+                                "example": "https://www.examplesite.com/support",
+                                "maxLength": 2000
                               }
                             }
                           },
