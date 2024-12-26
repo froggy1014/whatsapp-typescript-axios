@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.10
+
+### Patch Changes
+
+- 7cac602: add buttons fields to support the other type buttons
+
 ## 1.5.9
 
 ### Patch Changes
