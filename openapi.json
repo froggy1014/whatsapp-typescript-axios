@@ -6373,15 +6373,25 @@
         }
       ]
     },
-    "/{assigned-waba-id}": {
+    "/{waba-id}": {
       "get": {
         "tags": ["WhatsApp Business Accounts"],
         "summary": "WABA ID",
-        "description": "Use this endpoint to get information about a specific WhatsApp Business Account (WABA).\n\n## Parameters\n\n| Name          | Description   |\n| ------------- | ------------- |\n| **`account_review_status`**   | Used to fetch the WhatsApp Business Account review status. This field can have one of the following values: `PENDING`, `APPROVED`, and `REJECTED`.|\n| **`id`**   | ID for this WABA.|\n| **`name`**   |WABA's name.|\n| **`message_template_namespace`**   | Namespace string for the message templates that belong to the WABA.|\n| **`currency`**   | WABA's currency.|\n| **`on_behalf_of_business_info`**   | Information about On Behalf Of relationships this account is part of.|\n| **`primary_funding_id`**   | A WABA's payment method ID. |\n| **`purchase_order_number`**   | Purchase order number supplied by the business. Used for payment management purposes. |\n| **`timezone_id`**   | Timezone ID for this WABA.|\n| **`owner_business_info`**   | Get the ID for the business that owns this WABA. Use this field to fetch a client's business ID.|\n\n## Examples\nUnder **Example Request** on the right-side panel, you can switch between examples of the following API calls:\n- Fetch a WABA’s Payment Method ID\n- Get WABA Review Status\n- Get WABA Information\n- Get WABA's Owner ID",
-        "operationId": "wabaId",
+        "description": "Get information about a specific WhatsApp Business Account (WABA).\n\nThis endpoint returns details like account review status, ID, health status, business verification status, message template namespace, name, ownership type, and currency.\n\nThe response includes:\n- Account status (APPROVED, ACTIVE, INACTIVE, DISABLED)\n- Business verification status (verified, pending_submission, unverified, rejected) \n- Message sending capability (BLOCKED, LIMITED, AVAILABLE)\n- Basic WABA info like name, currency, timezone\n- Template namespace for message templates\n- Ownership and business verification details\n\nYou can request specific fields using the optional `fields` query parameter.",
+        "operationId": "getWabaAccount",
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "id,name,account_review_status,auth_international_rate_eligibility,business_verification_status,country,currency,health_status,status,ownership_type,message_template_namespace"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Fetch WABA’s Payment Method ID / Get WABA Review Status / Get WABA Information / Get WABA's Owner ID",
+            "description": "Fetch WABA's Payment Method ID / Get WABA Review Status / Get WABA Information / Get WABA's Owner ID",
             "content": {
               "application/json": {
                 "schema": {
@@ -6389,11 +6399,77 @@
                   "properties": {
                     "account_review_status": {
                       "type": "string",
+                      "enum": ["APPROVED", "ACTIVE", "INACTIVE", "DISABLED"],
                       "example": "APPROVED"
                     },
                     "id": {
                       "type": "string",
                       "example": "1972385232742141"
+                    },
+                    "health_status": {
+                      "type": "object",
+                      "properties": {
+                        "can_send_message": {
+                          "type": "string",
+                          "enum": ["BLOCKED", "LIMITED", "AVAILABLE"],
+                          "example": "AVAILABLE"
+                        },
+                        "entities": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "entity_type": {
+                                "type": "string",
+                                "example": "whatsapp_business_account"
+                              },
+                              "id": {
+                                "type": "string",
+                                "example": "1972385232742141"
+                              },
+                              "can_send_message": {
+                                "type": "string",
+                                "example": "AVAILABLE"
+                              },
+                              "errors": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "error_code": {
+                                      "type": "number",
+                                      "example": 1234
+                                    },
+                                    "error_description": {
+                                      "type": "string",
+                                      "example": "Error description"
+                                    },
+                                    "possible_solution": {
+                                      "type": "string",
+                                      "example": "Possible solution"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["APPROVED", "ACTIVE", "INACTIVE", "DISABLED"],
+                      "example": "ACTIVE"
+                    },
+                    "business_verification_status": {
+                      "type": "string",
+                      "enum": [
+                        "verified",
+                        "pending_submission",
+                        "unverified",
+                        "rejected"
+                      ],
+                      "example": "verified"
                     },
                     "message_template_namespace": {
                       "type": "string",
@@ -6403,39 +6479,18 @@
                       "type": "string",
                       "example": "Test"
                     },
-                    "on_behalf_of_business_info": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "example": "1231231231"
-                        },
-                        "name": {
-                          "type": "string",
-                          "example": "Test BM"
-                        },
-                        "status": {
-                          "type": "string",
-                          "example": "APPROVED"
-                        },
-                        "type": {
-                          "type": "string",
-                          "example": "SELF"
-                        }
-                      }
-                    },
-                    "primary_funding_id": {
+                    "ownership_type": {
                       "type": "string",
-                      "example": "1972385232742148"
+                      "example": "SELF"
                     },
-                    "timezone_id": {
+                    "currency": {
                       "type": "string",
-                      "example": "1"
+                      "example": "USD"
                     }
                   }
                 },
                 "examples": {
-                  "Fetch WABA’s Payment Method ID": {
+                  "Fetch WABA's Payment Method ID": {
                     "value": {
                       "id": "1972385232742141",
                       "primary_funding_id": "1972385232742148"
@@ -6469,7 +6524,7 @@
       },
       "parameters": [
         {
-          "name": "assigned-waba-id",
+          "name": "waba-id",
           "in": "path",
           "required": true,
           "schema": {
@@ -8231,7 +8286,7 @@
                   "components": {
                     "type": "array",
                     "items": {
-                      "type": "object", 
+                      "type": "object",
                       "properties": {
                         "buttons": {
                           "type": "array",
@@ -8265,13 +8320,19 @@
                                 "maxLength": 20
                               },
                               "text": {
-                                "type": "string", 
+                                "type": "string",
                                 "example": "Call Support",
                                 "maxLength": 25
                               },
                               "type": {
                                 "type": "string",
-                                "enum": ["COPY_CODE", "FLOW", "PHONE_NUMBER", "QUICK_REPLY", "URL"]
+                                "enum": [
+                                  "COPY_CODE",
+                                  "FLOW",
+                                  "PHONE_NUMBER",
+                                  "QUICK_REPLY",
+                                  "URL"
+                                ]
                               },
                               "url": {
                                 "type": "string",
@@ -8969,381 +9030,7 @@
         }
       ]
     },
-    "/{waba-id}": {
-      "get": {
-        "tags": ["Analytics"],
-        "summary": "Get namespace",
-        "description": "- Guide: [Message Templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)\n- Guide: [How To Monitor Quality Signals](https://developers.facebook.com/docs/whatsapp/guides/how-to-monitor-quality-signals)\n- Endpoint reference: [WhatsApp Business Account > Message Templates](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/)",
-        "operationId": "getNamespace",
-        "parameters": [
-          {
-            "name": "fields",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "example": "message_template_namespace"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Example response / Example reponse / Example response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string",
-                  "example": "*"
-                }
-              },
-              "Alt-Svc": {
-                "schema": {
-                  "type": "string",
-                  "example": "h3=\":443\"; ma=86400"
-                }
-              },
-              "Cache-Control": {
-                "schema": {
-                  "type": "string",
-                  "example": "private, no-cache, no-store, must-revalidate"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "string",
-                  "example": "92"
-                }
-              },
-              "Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Wed, 05 Apr 2023 18:51:08 GMT"
-                }
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string",
-                  "example": "\"f3fe70e1e3b22c5aa9edd9d4430b0c5a9e78f68c\""
-                }
-              },
-              "Expires": {
-                "schema": {
-                  "type": "string",
-                  "example": "Sat, 01 Jan 2000 00:00:00 GMT"
-                }
-              },
-              "Pragma": {
-                "schema": {
-                  "type": "string",
-                  "example": "no-cache"
-                }
-              },
-              "Strict-Transport-Security": {
-                "schema": {
-                  "type": "string",
-                  "example": "max-age=15552000; preload"
-                }
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string",
-                  "example": "Origin"
-                }
-              },
-              "X-FB-Debug": {
-                "schema": {
-                  "type": "string",
-                  "example": "jI6jeoezzMoKeb+HWbNzMiESQpSP/ZBpT0HLUdLgsaWMYrL0xDcINSox0i7lpqsiyoEsaQFngro4GtpMv+hpSw=="
-                }
-              },
-              "facebook-api-version": {
-                "schema": {
-                  "type": "string",
-                  "example": "v16.0"
-                }
-              },
-              "x-business-use-case-usage": {
-                "schema": {
-                  "type": "string",
-                  "example": "{\"102290129340398\":[{\"type\":\"whatsapp_business_management\",\"call_count\":1,\"total_cputime\":1,\"total_time\":1,\"estimated_time_to_regain_access\":0}]}"
-                }
-              },
-              "x-fb-request-id": {
-                "schema": {
-                  "type": "string",
-                  "example": "Amez7b9yCp8MnTQlGbo0AnF"
-                }
-              },
-              "x-fb-rev": {
-                "schema": {
-                  "type": "string",
-                  "example": "1007251231"
-                }
-              },
-              "x-fb-rlafr": {
-                "schema": {
-                  "type": "string",
-                  "example": "0"
-                }
-              },
-              "x-fb-trace-id": {
-                "schema": {
-                  "type": "string",
-                  "example": "EB5kGHWA89K"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "analytics": {
-                      "type": "object",
-                      "properties": {
-                        "country_codes": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "example": "US"
-                          },
-                          "example": ["US", "BR"]
-                        },
-                        "data_points": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "delivered": {
-                                "type": "number",
-                                "example": 179715
-                              },
-                              "end": {
-                                "type": "number",
-                                "example": 1543629600
-                              },
-                              "sent": {
-                                "type": "number",
-                                "example": 196093
-                              },
-                              "start": {
-                                "type": "number",
-                                "example": 1543543200
-                              }
-                            }
-                          },
-                          "example": [
-                            {
-                              "delivered": 179715,
-                              "end": 1543629600,
-                              "sent": 196093,
-                              "start": 1543543200
-                            },
-                            {
-                              "delivered": 139032,
-                              "end": 1543716000,
-                              "sent": 147649,
-                              "start": 1543629600
-                            },
-                            {
-                              "delivered": 58830,
-                              "end": 1543802400,
-                              "sent": 61988,
-                              "start": 1543716000
-                            },
-                            {
-                              "delivered": 124392,
-                              "end": 1543888800,
-                              "sent": 132465,
-                              "start": 1543802400
-                            },
-                            {
-                              "delivered": 167335,
-                              "end": 1543975200,
-                              "sent": 181002,
-                              "start": 1543888800
-                            },
-                            {
-                              "delivered": 157838,
-                              "end": 1544061600,
-                              "sent": 168687,
-                              "start": 1543975200
-                            },
-                            {
-                              "delivered": 152383,
-                              "end": 1544148000,
-                              "sent": 161832,
-                              "start": 1544061600
-                            }
-                          ]
-                        },
-                        "granularity": {
-                          "type": "string",
-                          "example": "DAY"
-                        },
-                        "phone_numbers": {
-                          "type": "array",
-                          "items": {
-                            "type": "string",
-                            "example": "16505550111"
-                          },
-                          "example": [
-                            "16505550111",
-                            "16505550112",
-                            "16505550113"
-                          ]
-                        }
-                      }
-                    },
-                    "id": {
-                      "type": "string",
-                      "example": "104996122399160"
-                    },
-                    "message_template_namespace": {
-                      "type": "string",
-                      "example": "58e6d318_b627_4112_b9c7_2961197553ea"
-                    }
-                  }
-                },
-                "examples": {
-                  "Example reponse": {
-                    "value": {
-                      "analytics": {
-                        "country_codes": ["US", "BR"],
-                        "data_points": [
-                          {
-                            "delivered": 179715,
-                            "end": 1543629600,
-                            "sent": 196093,
-                            "start": 1543543200
-                          },
-                          {
-                            "delivered": 139032,
-                            "end": 1543716000,
-                            "sent": 147649,
-                            "start": 1543629600
-                          },
-                          {
-                            "delivered": 58830,
-                            "end": 1543802400,
-                            "sent": 61988,
-                            "start": 1543716000
-                          },
-                          {
-                            "delivered": 124392,
-                            "end": 1543888800,
-                            "sent": 132465,
-                            "start": 1543802400
-                          },
-                          {
-                            "delivered": 167335,
-                            "end": 1543975200,
-                            "sent": 181002,
-                            "start": 1543888800
-                          },
-                          {
-                            "delivered": 157838,
-                            "end": 1544061600,
-                            "sent": 168687,
-                            "start": 1543975200
-                          },
-                          {
-                            "delivered": 152383,
-                            "end": 1544148000,
-                            "sent": 161832,
-                            "start": 1544061600
-                          }
-                        ],
-                        "granularity": "DAY",
-                        "phone_numbers": [
-                          "16505550111",
-                          "16505550112",
-                          "16505550113"
-                        ]
-                      },
-                      "id": "952305634918047"
-                    }
-                  },
-                  "Example response": {
-                    "value": {
-                      "analytics": {
-                        "country_codes": ["US", "BR"],
-                        "data_points": [
-                          {
-                            "delivered": 179715,
-                            "end": 1543629600,
-                            "sent": 196093,
-                            "start": 1543543200
-                          },
-                          {
-                            "delivered": 139032,
-                            "end": 1543716000,
-                            "sent": 147649,
-                            "start": 1543629600
-                          },
-                          {
-                            "delivered": 58830,
-                            "end": 1543802400,
-                            "sent": 61988,
-                            "start": 1543716000
-                          },
-                          {
-                            "delivered": 124392,
-                            "end": 1543888800,
-                            "sent": 132465,
-                            "start": 1543802400
-                          },
-                          {
-                            "delivered": 167335,
-                            "end": 1543975200,
-                            "sent": 181002,
-                            "start": 1543888800
-                          },
-                          {
-                            "delivered": 157838,
-                            "end": 1544061600,
-                            "sent": 168687,
-                            "start": 1543975200
-                          },
-                          {
-                            "delivered": 152383,
-                            "end": 1544148000,
-                            "sent": 161832,
-                            "start": 1544061600
-                          }
-                        ],
-                        "granularity": "DAY",
-                        "phone_numbers": [
-                          "16505550111",
-                          "16505550112",
-                          "16505550113"
-                        ]
-                      },
-                      "id": "952305634918047"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "waba-id",
-          "in": "path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
+
     "/{business-account-id}/extendedcredits": {
       "get": {
         "tags": ["Billing"],
