@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.13
+
+### Patch Changes
+
+- 500abe8: add language enum on template parameter
+
 ## 1.5.12
 
 ### Patch Changes
