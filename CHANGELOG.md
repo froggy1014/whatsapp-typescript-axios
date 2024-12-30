@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.14
+
+### Patch Changes
+
+- 18219c1: add missing format enum on header component
+
 ## 1.5.13
 
 ### Patch Changes
