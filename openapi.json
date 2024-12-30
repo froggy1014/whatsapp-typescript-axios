@@ -7552,6 +7552,7 @@
                           },
                           "format": {
                             "type": "string",
+                            "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
                             "example": "TEXT"
                           },
                           "text": {
@@ -7737,6 +7738,7 @@
                         },
                         "format": {
                           "type": "string",
+                          "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
                           "example": "TEXT"
                         },
                         "text": {
@@ -8234,6 +8236,7 @@
                                 },
                                 "format": {
                                   "type": "string",
+                                  "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
                                   "example": "TEXT"
                                 },
                                 "text": {
@@ -8612,6 +8615,7 @@
                         },
                         "format": {
                           "type": "string",
+                          "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
                           "example": "DOCUMENT"
                         },
                         "text": {
