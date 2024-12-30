@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.12
+
+### Patch Changes
+
+- 18d5345: add missing template category enum
+
 ## 1.5.11
 
 ### Patch Changes
