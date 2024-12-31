@@ -7552,7 +7552,13 @@
                           },
                           "format": {
                             "type": "string",
-                            "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
+                            "enum": [
+                              "TEXT",
+                              "IMAGE",
+                              "VIDEO",
+                              "DOCUMENT",
+                              "LOCATION"
+                            ],
                             "example": "TEXT"
                           },
                           "text": {
@@ -7600,16 +7606,75 @@
                     "language": {
                       "type": "string",
                       "enum": [
-                        "af", "sq", "ar", "az", "bn", "bg", "ca",
-                        "zh_CN", "zh_HK", "zh_TW", "hr", "cs", "da", "nl",
-                        "en", "en_GB", "en_US", "et", "fil", "fi", "fr",
-                        "ka", "de", "el", "gu", "ha", "he", "hi", "hu",
-                        "id", "ga", "it", "ja", "kn", "kk", "ko", "lo",
-                        "lv", "lt", "mk", "ms", "ml", "mr", "nb", "fa",
-                        "pl", "pt_BR", "pt_PT", "pa", "ro", "ru", "sr",
-                        "sk", "sl", "es", "es_AR", "es_ES", "es_MX", "sw",
-                        "sv", "ta", "te", "th", "tr", "uk", "ur", "uz",
-                        "vi", "zu"
+                        "af",
+                        "sq",
+                        "ar",
+                        "az",
+                        "bn",
+                        "bg",
+                        "ca",
+                        "zh_CN",
+                        "zh_HK",
+                        "zh_TW",
+                        "hr",
+                        "cs",
+                        "da",
+                        "nl",
+                        "en",
+                        "en_GB",
+                        "en_US",
+                        "et",
+                        "fil",
+                        "fi",
+                        "fr",
+                        "ka",
+                        "de",
+                        "el",
+                        "gu",
+                        "ha",
+                        "he",
+                        "hi",
+                        "hu",
+                        "id",
+                        "ga",
+                        "it",
+                        "ja",
+                        "kn",
+                        "kk",
+                        "ko",
+                        "lo",
+                        "lv",
+                        "lt",
+                        "mk",
+                        "ms",
+                        "ml",
+                        "mr",
+                        "nb",
+                        "fa",
+                        "pl",
+                        "pt_BR",
+                        "pt_PT",
+                        "pa",
+                        "ro",
+                        "ru",
+                        "sr",
+                        "sk",
+                        "sl",
+                        "es",
+                        "es_AR",
+                        "es_ES",
+                        "es_MX",
+                        "sw",
+                        "sv",
+                        "ta",
+                        "te",
+                        "th",
+                        "tr",
+                        "uk",
+                        "ur",
+                        "uz",
+                        "vi",
+                        "zu"
                       ],
                       "example": "en_US"
                     },
@@ -7733,12 +7798,34 @@
                                 "example": ["Mark", "FALL25"]
                               },
                               "example": [["Mark", "FALL25"]]
+                            },
+                            "body_text_named_params": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "param_name": {
+                                    "type": "string",
+                                    "example": "user_name"
+                                  },
+                                  "example": {
+                                    "type": "string",
+                                    "example": "heetae"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
                         "format": {
                           "type": "string",
-                          "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
+                          "enum": [
+                            "TEXT",
+                            "IMAGE",
+                            "VIDEO",
+                            "DOCUMENT",
+                            "LOCATION"
+                          ],
                           "example": "TEXT"
                         },
                         "text": {
@@ -8236,7 +8323,13 @@
                                 },
                                 "format": {
                                   "type": "string",
-                                  "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
+                                  "enum": [
+                                    "TEXT",
+                                    "IMAGE",
+                                    "VIDEO",
+                                    "DOCUMENT",
+                                    "LOCATION"
+                                  ],
                                   "example": "TEXT"
                                 },
                                 "text": {
@@ -8610,12 +8703,40 @@
                               "example": [
                                 "4::YXBwbGljYXRpb24vcGRm:ARZVv4zuogJMxmAdS3_6T4o_K4ll2806avA7rWpikisTzYPsXXUeKk0REjS-hIM1rYrizHD7rQXj951TKgUFblgd_BDWVROCwRkg9Vhjj-cHNQ:e:1681237341:634974688087057:100089620928913:ARa1ZDhwbLZM3EENeeg"
                               ]
+                            },
+                            "body_text_named_params": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "param_name": {
+                                    "type": "string",
+                                    "example": "user_name"
+                                  },
+                                  "example": {
+                                    "type": "string",
+                                    "example": "John"
+                                  }
+                                }
+                              },
+                              "example": [
+                                {
+                                  "param_name": "user_name",
+                                  "example": "John"
+                                }
+                              ]
                             }
                           }
                         },
                         "format": {
                           "type": "string",
-                          "enum": ["TEXT", "IMAGE", "VIDEO", "DOCUMENT", "LOCATION"],
+                          "enum": [
+                            "TEXT",
+                            "IMAGE",
+                            "VIDEO",
+                            "DOCUMENT",
+                            "LOCATION"
+                          ],
                           "example": "DOCUMENT"
                         },
                         "text": {
@@ -8665,16 +8786,75 @@
                   "language": {
                     "type": "string",
                     "enum": [
-                      "af", "sq", "ar", "az", "bn", "bg", "ca",
-                      "zh_CN", "zh_HK", "zh_TW", "hr", "cs", "da", "nl",
-                      "en", "en_GB", "en_US", "et", "fil", "fi", "fr",
-                      "ka", "de", "el", "gu", "ha", "he", "hi", "hu",
-                      "id", "ga", "it", "ja", "kn", "kk", "ko", "lo",
-                      "lv", "lt", "mk", "ms", "ml", "mr", "nb", "fa",
-                      "pl", "pt_BR", "pt_PT", "pa", "ro", "ru", "sr",
-                      "sk", "sl", "es", "es_AR", "es_ES", "es_MX", "sw",
-                      "sv", "ta", "te", "th", "tr", "uk", "ur", "uz",
-                      "vi", "zu"
+                      "af",
+                      "sq",
+                      "ar",
+                      "az",
+                      "bn",
+                      "bg",
+                      "ca",
+                      "zh_CN",
+                      "zh_HK",
+                      "zh_TW",
+                      "hr",
+                      "cs",
+                      "da",
+                      "nl",
+                      "en",
+                      "en_GB",
+                      "en_US",
+                      "et",
+                      "fil",
+                      "fi",
+                      "fr",
+                      "ka",
+                      "de",
+                      "el",
+                      "gu",
+                      "ha",
+                      "he",
+                      "hi",
+                      "hu",
+                      "id",
+                      "ga",
+                      "it",
+                      "ja",
+                      "kn",
+                      "kk",
+                      "ko",
+                      "lo",
+                      "lv",
+                      "lt",
+                      "mk",
+                      "ms",
+                      "ml",
+                      "mr",
+                      "nb",
+                      "fa",
+                      "pl",
+                      "pt_BR",
+                      "pt_PT",
+                      "pa",
+                      "ro",
+                      "ru",
+                      "sr",
+                      "sk",
+                      "sl",
+                      "es",
+                      "es_AR",
+                      "es_ES",
+                      "es_MX",
+                      "sw",
+                      "sv",
+                      "ta",
+                      "te",
+                      "th",
+                      "tr",
+                      "uk",
+                      "ur",
+                      "uz",
+                      "vi",
+                      "zu"
                     ],
                     "example": "en_US"
                   },
@@ -8685,6 +8865,27 @@
                 }
               },
               "examples": {
+                "Create Template w/ named paramters": {
+                  "value": {
+                    "name": "template with named parameter",
+                    "language": "en_US",
+                    "category": "MARKETING",
+                    "components": [
+                      {
+                        "type": "BODY",
+                        "text": "Hi {{user_name}},\n\nYour new account has been created successfully. \n\nPlease verify credential to complete your profile.",
+                        "example": {
+                          "body_text_named_params": [
+                            {
+                              "param_name": "user_name",
+                              "example": "heetae"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
                 "Create authentication template w/ OTP copy code button": {
                   "value": {
                     "category": "AUTHENTICATION",
