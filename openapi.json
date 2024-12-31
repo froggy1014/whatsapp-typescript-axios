@@ -7536,6 +7536,18 @@
                           "example": {
                             "type": "object",
                             "properties": {
+                              "header_text": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "example": "greeting"
+                                  },
+                                  "example": ["greeting"]
+                                },
+                                "example": [["greeting"]]
+                              },
                               "body_text": {
                                 "type": "array",
                                 "items": {
@@ -7803,6 +7815,18 @@
                         "example": {
                           "type": "object",
                           "properties": {
+                            "header_text": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "example": "greeting"
+                                },
+                                "example": ["greeting"]
+                              },
+                              "example": [["greeting"]]
+                            },
                             "body_text": {
                               "type": "array",
                               "items": {
@@ -8323,6 +8347,18 @@
                                 "example": {
                                   "type": "object",
                                   "properties": {
+                                    "header_text": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "example": "greeting"
+                                        },
+                                        "example": ["greeting"]
+                                      },
+                                      "example": [["greeting"]]
+                                    },
                                     "body_text": {
                                       "type": "array",
                                       "items": {
@@ -8725,6 +8761,18 @@
                                 "example": ["Mark", "860198-230332"]
                               },
                               "example": [["Mark", "860198-230332"]]
+                            },
+                            "header_text": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "example": "greeting"
+                                },
+                                "example": ["greeting"]
+                              },
+                              "example": [["greeting"]]
                             },
                             "header_handle": {
                               "type": "array",
