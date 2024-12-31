@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.16
+
+### Patch Changes
+
+- f8271b9: add missing type for template create
+
 ## 1.5.15
 
 ### Patch Changes
