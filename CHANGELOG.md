@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.17
+
+### Patch Changes
+
+- 8674328: add header_text type on template component
+
 ## 1.5.16
 
 ### Patch Changes
