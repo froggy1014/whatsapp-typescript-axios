@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.15
+
+### Patch Changes
+
+- e4e8e48: add named parameter type of template creation
+
 ## 1.5.14
 
 ### Patch Changes
