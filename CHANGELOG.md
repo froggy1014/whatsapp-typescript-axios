@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.19
+
+### Patch Changes
+
+- b0a4d15: correct wrong type from header_text
+
 ## 1.5.18
 
 ### Patch Changes
