@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.5.18
+
+### Patch Changes
+
+- c98e5ca: add missing type for heading named parameter
+
 ## 1.5.17
 
 ### Patch Changes
