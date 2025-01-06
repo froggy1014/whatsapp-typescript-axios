@@ -7575,6 +7575,22 @@
                                     }
                                   }
                                 }
+                              },
+                              "header_text_named_params": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "param_name": {
+                                      "type": "string",
+                                      "example": "user_name"
+                                    },
+                                    "example": {
+                                      "type": "string",
+                                      "example": "John"
+                                    }
+                                  }
+                                }
                               }
                             }
                           },
@@ -7840,6 +7856,22 @@
                               "example": [["Mark", "FALL25"]]
                             },
                             "body_text_named_params": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "param_name": {
+                                    "type": "string",
+                                    "example": "user_name"
+                                  },
+                                  "example": {
+                                    "type": "string",
+                                    "example": "heetae"
+                                  }
+                                }
+                              }
+                            },
+                            "header_text_named_params": {
                               "type": "array",
                               "items": {
                                 "type": "object",
@@ -8386,6 +8418,22 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "header_text_named_params": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "param_name": {
+                                            "type": "string",
+                                            "example": "user_name"
+                                          },
+                                          "example": {
+                                            "type": "string",
+                                            "example": "John"
+                                          }
+                                        }
+                                      }
                                     }
                                   }
                                 },
@@ -8805,6 +8853,22 @@
                                   "example": "John"
                                 }
                               ]
+                            },
+                            "header_text_named_params": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "param_name": {
+                                    "type": "string",
+                                    "example": "user_name"
+                                  },
+                                  "example": {
+                                    "type": "string",
+                                    "example": "John"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
