@@ -6443,7 +6443,7 @@
     },
     "/{business-phone-number-id}/register": {
       "post": {
-        "tags": ["Send Flow via Cloud API"],
+        "tags": ["Registration"],
         "summary": "Register Phone Number",
         "description": "Register a phone number to send messages. The pin is a 6 digit number of you choice",
         "operationId": "registerPhoneNumber",
