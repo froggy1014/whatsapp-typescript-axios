@@ -1,5 +1,15 @@
 # whatsapp-typescript-axios
 
+## 1.6.0
+
+### Minor Changes
+
+- 07567f4: add response fields based on fields query
+
+### Patch Changes
+
+- 07567f4: add missing fields in button properties in button component
+
 ## 1.5.19
 
 ### Patch Changes
