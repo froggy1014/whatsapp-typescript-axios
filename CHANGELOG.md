@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.6.1
+
+### Patch Changes
+
+- fd19963: merge phone number register endpoints
+
 ## 1.6.0
 
 ### Minor Changes
