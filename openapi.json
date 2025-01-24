@@ -3983,8 +3983,8 @@
     "/{business-phone-number-id}": {
       "get": {
         "tags": ["Phone Numbers"],
-        "summary": "Get Phone Number By ID",
-        "description": "When you query all the phone numbers for a WhatsApp Business Account, each phone number has an **`id`**. You can directly query for a phone number using this **`id`**.\n\n#### Response Parameters\n\n| Name                  | Description                 |\n|-----------------------|-----------------------------|\n| **`verified_name`**         | The verified name associated with the phone number.  |\n| **`display_phone_number`**  | The string representation of the phone number.       |\n| **`id`**                    | The ID associated with the phone number.                            |\n| **`quality_rating`**        | The quality rating of the phone number based on how messages have been received by recipients in recent days. Valid values are: <br/><ul><li>**`Green`**: High Quality</li><li>**`Yellow`**: Medium Quality</li><li>**`Red`**: Low Quality</li><li>**`NA`**: Quality has not been determined</li></ul>  <br/>For more information relating to quality rating, see [About WhatsApp Business Account Message Quality Rating](https://www.facebook.com/business/help/896873687365001).                     |",
+        "summary": "Get Phone Number Data By Phone Number ID",
+        "description": "Retrieves **detailed information** about a specific WhatsApp Business phone number using its ID. This endpoint returns **comprehensive data** about the phone number including its **display format**, **verification status**, **quality rating**, **throughput level**, and various **account settings**. The response includes important **operational metrics** like messaging limits, platform type, and quality scores that help monitor the **health and status** of your WhatsApp Business account. For complete reference documentation, see the [WhatsApp Business Account Phone Number Status API](https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account-to-number-current-status/).",
         "operationId": "getPhoneNumberById",
         "parameters": [
           {
@@ -3992,9 +3992,8 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "example": "name_status"
-            },
-            "description": "The status of a display name associated with a specific phone number. The **`name_status`** value can be one of the following:\n\n* `APPROVED`: The name has been approved. You can download your certificate now.\n* `AVAILABLE_WITHOUT_REVIEW`: The certificate for the phone is available and display name is ready to use without review.\n* `DECLINED`: The name has not been approved. You cannot download your certificate.\n* `EXPIRED`: Your certificate has expired and can no longer be downloaded.\n* `PENDING_REVIEW`: Your name request is under review. You cannot download your certificate.\nNONE: No certificate is available."
+              "example": "id, account_mode, certificate, code_verification_status, conversational_automation, display_phone_number, eligibility_for_api_business_global_search, health_status, is_official_business_account, is_on_biz_app, is_pin_enabled, is_preverified_number, last_onboarded_time, messaging_limit_tier, name_status, new_certificate, new_name_status, platform_type, quality_score, search_visibility, status, throughput, verified_name"
+            }
           }
         ],
         "responses": {
@@ -4024,6 +4023,163 @@
                     "verified_name": {
                       "type": "string",
                       "example": "Jasper's Market"
+                    },
+                    "account_mode": {
+                      "type": "string",
+                      "enum": ["LIVE", "SANDBOX"]
+                    },
+                    "certificate": {
+                      "type": "string"
+                    },
+                    "code_verification_status": {
+                      "type": "string",
+                      "enum": [
+                        "NOT_VERIFIED",
+                        "VERIFIED",
+                        "EXPIRED",
+                        "PENDING",
+                        "DELETED",
+                        "MIGRATED",
+                        "BANNED",
+                        "RESTRICTED",
+                        "RATE_LIMITED",
+                        "FLAGGED",
+                        "CONNECTED",
+                        "DISCONNECTED",
+                        "UNKNOWN",
+                        "UNVERIFIED"
+                      ]
+                    },
+                    "conversational_automation": {
+                      "type": "object"
+                    },
+                    "eligibility_for_api_business_global_search": {
+                      "type": "string"
+                    },
+                    "health_status": {
+                      "type": "object",
+                      "properties": {
+                        "can_send_message": {
+                          "type": "string"
+                        },
+                        "entities": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "entity_type": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "can_send_message": {
+                                "type": "string"
+                              },
+                              "additional_info": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "errors": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "error_code": {
+                                      "type": "number"
+                                    },
+                                    "error_description": {
+                                      "type": "string"
+                                    },
+                                    "possible_solution": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "is_official_business_account": {
+                      "type": "boolean"
+                    },
+                    "is_on_biz_app": {
+                      "type": "boolean"
+                    },
+                    "is_pin_enabled": {
+                      "type": "boolean"
+                    },
+                    "is_preverified_number": {
+                      "type": "boolean"
+                    },
+                    "last_onboarded_time": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "messaging_limit_tier": {
+                      "type": "string",
+                      "enum": [
+                        "TIER_50",
+                        "TIER_250",
+                        "TIER_1K",
+                        "TIER_10K",
+                        "TIER_100K",
+                        "TIER_UNLIMITED"
+                      ]
+                    },
+                    "new_certificate": {
+                      "type": "string"
+                    },
+                    "new_name_status": {
+                      "type": "string"
+                    },
+                    "platform_type": {
+                      "type": "string",
+                      "enum": ["CLOUD_API", "ON_PREMISE", "NOT_APPLICABLE"]
+                    },
+                    "quality_score": {
+                      "type": "object",
+                      "description": "Quality score based on message reception over past 7 days, weighted by recency. Determined by signals like blocks, reports and block reasons.",
+                      "properties": {
+                        "score": {
+                          "type": "string",
+                          "enum": ["GREEN", "YELLOW", "RED"],
+                          "description": "Current quality rating"
+                        }
+                      }
+                    },
+                    "search_visibility": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "DELETED",
+                        "MIGRATED",
+                        "BANNED",
+                        "RESTRICTED",
+                        "RATE_LIMITED",
+                        "FLAGGED",
+                        "CONNECTED",
+                        "DISCONNECTED",
+                        "UNKNOWN",
+                        "UNVERIFIED"
+                      ]
+                    },
+                    "throughput": {
+                      "type": "object",
+                      "properties": {
+                        "level": {
+                          "type": "string",
+                          "enum": ["STANDARD", "HIGH", "NOT_APPLICABLE"],
+                          "example": "STANDARD"
+                        }
+                      }
                     }
                   }
                 },
@@ -4036,10 +4192,62 @@
                   },
                   "Get Phone Number By ID": {
                     "value": {
-                      "display_phone_number": "+1 631-555-5555",
+                      "display_phone_number": "+1 631-555-5555", 
                       "id": "1906385232743451",
                       "quality_rating": "GREEN",
                       "verified_name": "Jasper's Market"
+                    }
+                  },
+                  "Get Phone Number By ID with Full Details": {
+                    "value": {
+                      "id": "0",
+                      "account_mode": "LIVE",
+                      "code_verification_status": "EXPIRED", 
+                      "display_phone_number": "+1 206-745-7470",
+                      "eligibility_for_api_business_global_search": "NON_ELIGIBLE_VERIFIED_LEVEL",
+                      "health_status": {
+                        "can_send_message": "AVAILABLE",
+                        "entities": [
+                          {
+                            "entity_type": "PHONE_NUMBER",
+                            "id": "0",
+                            "can_send_message": "AVAILABLE"
+                          },
+                          {
+                            "entity_type": "WABA", 
+                            "id": "0",
+                            "can_send_message": "AVAILABLE"
+                          },
+                          {
+                            "entity_type": "BUSINESS",
+                            "id": "0", 
+                            "can_send_message": "AVAILABLE"
+                          },
+                          {
+                            "entity_type": "APP",
+                            "id": "0",
+                            "can_send_message": "AVAILABLE"
+                          }
+                        ]
+                      },
+                      "is_official_business_account": false,
+                      "is_on_biz_app": false,
+                      "is_pin_enabled": true,
+                      "is_preverified_number": false,
+                      "last_onboarded_time": "2025-01-15T07:31:33+0000",
+                      "messaging_limit_tier": "TIER_1K",
+                      "name_status": "APPROVED",
+                      "new_name_status": "NONE",
+                      "platform_type": "CLOUD_API",
+                      "quality_score": {
+                        "score": "GREEN"
+                      },
+                      "search_visibility": "NON_VISIBLE",
+                      "status": "CONNECTED",
+                      "throughput": {
+                        "level": "STANDARD"
+                      },
+                      "verified_name": "Jetaime Chicken"
                     }
                   }
                 }
