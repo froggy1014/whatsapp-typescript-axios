@@ -9186,19 +9186,19 @@
   ],
   "tags": [
     {
-      "name": "Business Profiles"
-    },
-    {
-      "name": "Registration"
-    },
-    {
-      "name": "Media"
-    },
-    {
       "name": "Messages"
     },
     {
+      "name": "Templates"
+    },
+    {
+      "name": "Flow"
+    },
+    {
       "name": "Phone Numbers"
+    },
+    {
+      "name": "Registration"
     },
     {
       "name": "Two-Step Verification"
@@ -9210,16 +9210,16 @@
       "name": "WABA Subscriptions"
     },
     {
-      "name": "Flow"
+      "name": "Setup Endpoint Encryption"
     },
     {
-      "name": "Setup Endpoint Encryption"
+      "name": "Media"
     },
     {
       "name": "QR codes"
     },
     {
-      "name": "Templates"
+      "name": "Business Profiles"
     }
   ]
 }
