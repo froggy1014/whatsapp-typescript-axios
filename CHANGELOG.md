@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.6.2
+
+### Patch Changes
+
+- 1028dc3: remove unused endpoints and change order of tags
+
 ## 1.6.1
 
 ### Patch Changes
