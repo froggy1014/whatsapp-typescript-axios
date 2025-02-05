@@ -524,35 +524,6 @@
         "operationId": "uploadImage",
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "example": "@/local/path/file.webp;type=webp"
-                  },
-                  "messaging_product": {
-                    "type": "string",
-                    "example": "whatsapp"
-                  }
-                }
-              },
-              "examples": {
-                "Upload Image": {
-                  "value": {
-                    "file": "@/local/path/file.jpg;type=image/jpeg",
-                    "messaging_product": "whatsapp"
-                  }
-                },
-                "Upload Sticker": {
-                  "value": {
-                    "file": "@/local/path/file.webp;type=webp",
-                    "messaging_product": "whatsapp"
-                  }
-                }
-              }
-            },
             "multipart/form-data": {
               "schema": {
                 "type": "object",
