@@ -1,5 +1,12 @@
 # whatsapp-typescript-axios
 
+## 1.6.3
+
+### Patch Changes
+
+- 5ac1839: merge phone number register endpoints
+- 5ac1839: remove application/json in media endpoint
+
 ## 1.6.2
 
 ### Patch Changes
