@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.7.0
+
+### Minor Changes
+
+- d457fc6: add upload related api endpoint
+
 ## 1.6.3
 
 ### Patch Changes
