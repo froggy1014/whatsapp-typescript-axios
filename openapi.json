@@ -516,6 +516,165 @@
         }
       ]
     },
+    "/{app-id}/uploads": {
+      "post": {
+        "tags": ["Media"],
+        "summary": "Upload Session",
+        "description": "Start an upload session by making a POST request with required parameters. This is step 1 of the upload process.",
+        "operationId": "UploadSession",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["file_name", "file_length", "file_type"],
+                "properties": {
+                  "file_name": {
+                    "type": "string",
+                    "description": "Name of the file to upload"
+                  },
+                  "file_length": {
+                    "type": "integer",
+                    "description": "File size in bytes"
+                  },
+                  "file_type": {
+                    "type": "string",
+                    "enum": [
+                      "application/pdf",
+                      "image/jpeg",
+                      "image/jpg",
+                      "image/png",
+                      "video/mp4"
+                    ],
+                    "description": "The file's MIME type"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Upload session ID",
+                      "example": "upload:MTphdHRhY2htZW50OmMzZjk3MzlhLWY2ZDktNGUzMS04MmIwLWNhZDExNzllNjcyMz9maWxlX2xlbmd0aD00NDAwMCZmaWxlX3R5cGU9aW1hZ2UlMkZqcGcmZmlsZV9uYW1lPWhlZXRhZWtpbQ==?sig=ARbyRwQ-j8T2qtUbabs"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "app-id",
+          "in": "path",
+          "required": true,
+          "description": "Your app's Meta ID",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/upload": {
+      "post": {
+        "tags": ["Media"],
+        "summary": "Start Upload Session",
+        "description": "Start an upload session by making a POST request with required parameters. This is step 2 of the upload process. After getting the upload session ID, you can upload the file data in chunks starting from offset 0 using --data-binary @<FILE_NAME>.",
+        "operationId": "startUploadSession",
+        "parameters": [
+          {
+            "name": "file_offset",
+            "in": "header",
+            "required": false,
+            "description": "The byte offset to start uploading from. Use 0 for initial upload.",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["data_binary"],
+                "properties": {
+                  "file_offset": {
+                    "type": "integer",
+                    "description": "The byte offset to start uploading from. Use 0 for initial upload.",
+                    "default": 0
+                  },
+                  "data_binary": {
+                    "type": "string",
+                    "description": "File data to upload using --data-binary @<FILE_NAME>",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Upload session created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "h": {
+                      "type": "string",
+                      "description": "File handle to be used in API calls to publish the file",
+                      "example": "2:c2FtcGxl..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Media"],
+        "summary": "Resume Upload Session",
+        "description": "Resume an interrupted upload session by making a GET request. This will return the file offset to resume uploading from.",
+        "operationId": "resumeUploadSession",
+        "responses": {
+          "200": {
+            "description": "Upload session status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Upload session ID",
+                      "example": "upload:<UPLOAD_SESSION_ID>"
+                    },
+                    "file_offset": {
+                      "type": "integer",
+                      "description": "The byte offset to resume uploading from"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/{business-phone-number-id}/media": {
       "post": {
         "tags": ["Media"],
