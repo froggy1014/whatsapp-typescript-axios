@@ -1,5 +1,12 @@
 # whatsapp-typescript-axios
 
+## 1.7.2
+
+### Patch Changes
+
+- 877e307: add OAuth header parameter
+- f9e93e3: swagger update for oauth
+
 ## 1.7.1
 
 ### Patch Changes
