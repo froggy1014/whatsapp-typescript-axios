@@ -18,10 +18,17 @@
       },
       "oauth2Auth": {
         "type": "oauth2",
+        "description": "OAuth 2.0 인증을 사용하여 WhatsApp Cloud API에 접근합니다",
         "flows": {
           "authorizationCode": {
-            "authorizationUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
-            "tokenUrl": "https://graph.facebook.com/v22.0/oauth/access_token"
+            "authorizationUrl": "https://www.facebook.com/v22.0/dialog/oauth",
+            "tokenUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
+            "refreshUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
+            "scopes": {
+              "whatsapp_business_management": "WhatsApp Business API 관리 권한",
+              "whatsapp_business_messaging": "WhatsApp 메시지 전송 권한",
+              "business_management": "비즈니스 관리 권한"
+            }
           }
         }
       }
@@ -32,7 +39,7 @@
       "bearerAuth": []
     },
     {
-      "oauth2Auth": ["read", "write"]
+      "oauth2Auth": ["whatsapp_business_management", "whatsapp_business_messaging", "business_management"]
     }
   ],
   "paths": {
