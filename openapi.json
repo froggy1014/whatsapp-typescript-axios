@@ -639,6 +639,15 @@
             }
           },
           {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "OAuth access token in format: 'OAuth <ACCESS_TOKEN>'"
+          },
+          {
             "name": "file_offset",
             "in": "header",
             "required": true,
