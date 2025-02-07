@@ -1,5 +1,12 @@
 # whatsapp-typescript-axios
 
+## 1.7.1
+
+### Patch Changes
+
+- 19711f9: add scope for oauth
+- f87b48b: correct wrong endpoint for upload file
+
 ## 1.7.0
 
 ### Minor Changes
