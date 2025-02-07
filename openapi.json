@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://graph.facebook.com/v21.0"
+      "url": "https://graph.facebook.com/v22.0"
     }
   ],
   "components": {
@@ -639,13 +639,13 @@
             }
           },
           {
-            "name": "Authorization",
-            "in": "header",
+            "name": "sig",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "OAuth access token in format: 'OAuth <ACCESS_TOKEN>'"
+            "description": "Signature parameter for the upload session"
           },
           {
             "name": "file_offset",
@@ -655,30 +655,6 @@
               "default": 0
             },
             "description": "The byte offset to start uploading from"
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "*/*"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "application/pdf",
-                "image/jpeg",
-                "image/jpg",
-                "image/png"
-              ],
-              "description": "The content type of the file being uploaded"
-            }
           }
         ],
         "requestBody": {
