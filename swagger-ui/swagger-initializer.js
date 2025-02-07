@@ -3,7 +3,9 @@ window.onload = function() {
 
   // OAuth 코드 감지 및 처리
   const urlParams = new URLSearchParams(window.location.search);
+  console.log("🚀 ~ urlParams:", urlParams)
   const code = urlParams.get('code');
+  console.log("🚀 ~ code:", code)
   
   if (code) {
     // OAuth 코드를 토큰으로 저장
