@@ -10,6 +10,31 @@
       "url": "https://graph.facebook.com/v21.0"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "oauth2Auth": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
+            "tokenUrl": "https://graph.facebook.com/v22.0/oauth/access_token"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    },
+    {
+      "oauth2Auth": ["read", "write"]
+    }
+  ],
   "paths": {
     "/app/uploads/": {
       "post": {
@@ -585,49 +610,46 @@
         }
       ]
     },
-    "/upload": {
+    "/{upload-session-id}": {
       "post": {
         "tags": ["Media"],
-        "summary": "Start Upload Session",
-        "description": "Start an upload session by making a POST request with required parameters. This is step 2 of the upload process. After getting the upload session ID, you can upload the file data in chunks starting from offset 0 using --data-binary @<FILE_NAME>.",
-        "operationId": "startUploadSession",
+        "summary": "Upload File Data",
+        "description": "Upload file data in chunks by making a POST request with the upload session ID. This is step 2 of the upload process.\n\n**Example Request:**\n```bash\ncurl -i -X POST \"https://graph.facebook.com/v22.0/upload:<UPLOAD_SESSION_ID>\" \\\n  --header \"Authorization: OAuth <USER_ACCESS_TOKEN>\" \\\n  --header \"file_offset: 0\" \\\n  --data-binary @<FILE_NAME>\n```",
+        "operationId": "uploadFileData",
         "parameters": [
+          {
+            "name": "upload-session-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "file_offset",
             "in": "header",
-            "required": false,
-            "description": "The byte offset to start uploading from. Use 0 for initial upload.",
+            "required": true,
             "schema": {
               "type": "integer",
               "default": 0
-            }
+            },
+            "description": "The byte offset to start uploading from"
           }
         ],
         "requestBody": {
           "content": {
-            "application/x-www-form-urlencoded": {
+            "application/octet-stream": {
               "schema": {
-                "type": "object",
-                "required": ["data_binary"],
-                "properties": {
-                  "file_offset": {
-                    "type": "integer",
-                    "description": "The byte offset to start uploading from. Use 0 for initial upload.",
-                    "default": 0
-                  },
-                  "data_binary": {
-                    "type": "string",
-                    "description": "File data to upload using --data-binary @<FILE_NAME>",
-                    "format": "binary"
-                  }
-                }
+                "type": "string",
+                "format": "binary",
+                "description": "File data to upload"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Upload session created successfully",
+            "description": "File data uploaded successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -650,6 +672,16 @@
         "summary": "Resume Upload Session",
         "description": "Resume an interrupted upload session by making a GET request. This will return the file offset to resume uploading from.",
         "operationId": "resumeUploadSession",
+        "parameters": [
+          {
+            "name": "upload-session-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Upload session status retrieved successfully",
@@ -890,11 +922,10 @@
           "200": {
             "description": "Download Media",
             "content": {
-              "text/plain": {
-                "examples": {
-                  "Download Media": {
-                    "value": ""
-                  }
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -9301,19 +9332,6 @@
       ]
     }
   },
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
-    }
-  },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
   "tags": [
     {
       "name": "Messages"
