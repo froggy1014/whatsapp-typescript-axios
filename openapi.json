@@ -19,6 +19,7 @@
       "oauth2": {
         "type": "oauth2",
         "description": "OAuth 2.0 인증을 사용하여 WhatsApp Cloud API에 접근합니다",
+        "grantTypes": "clientCredentials",
         "flows": {
           "authorizationCode": {
             "authorizationUrl": "https://www.facebook.com/v22.0/dialog/oauth",
