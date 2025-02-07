@@ -631,7 +631,7 @@
         "operationId": "uploadFileData",
         "parameters": [
           {
-            "name": "upload-session-id",
+            "name": "upload-session-id", 
             "in": "path",
             "required": true,
             "schema": {
@@ -640,7 +640,7 @@
           },
           {
             "name": "Authorization",
-            "in": "header",
+            "in": "header", 
             "required": true,
             "schema": {
               "type": "string"
@@ -650,12 +650,21 @@
           {
             "name": "file_offset",
             "in": "header",
-            "required": true,
+            "required": true, 
             "schema": {
               "type": "integer",
               "default": 0
             },
             "description": "The byte offset to start uploading from"
+          },
+          {
+            "name": "sig",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Signature parameter for the upload session"
           }
         ],
         "requestBody": {
