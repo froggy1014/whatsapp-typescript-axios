@@ -13,8 +13,14 @@ window.onload = function() {
     plugins: [
       SwaggerUIBundle.plugins.DownloadUrl
     ],
-    layout: "StandaloneLayout"
+    layout: "StandaloneLayout",
+    oauth2RedirectUrl: "https://whatsapp-typescript-axios.vercel.app/oauth2-redirect.html"
   });
 
-  //</editor-fold>
+  ui.initOAuth({
+    clientId: "clientId",
+    clientSecret: "clientSecret",
+    scopes: ["whatsapp_business_management", "whatsapp_business_messaging", "business_management"],
+    useBasicAuthenticationWithAccessCodeGrant: true
+  });
 };
