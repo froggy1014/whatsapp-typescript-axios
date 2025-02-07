@@ -627,6 +627,7 @@
             ]
           }
         ],
+
         "description": "Upload file data in chunks by making a POST request with the upload session ID. This is step 2 of the upload process.\n\n**Example Request:**\n```bash\ncurl -i -X POST \"https://graph.facebook.com/v22.0/upload:<UPLOAD_SESSION_ID>\" \\\n  --header \"Authorization: OAuth <USER_ACCESS_TOKEN>\" \\\n  --header \"file_offset: 0\" \\\n  --data-binary @<FILE_NAME>\n```",
         "operationId": "uploadFileData",
         "parameters": [
