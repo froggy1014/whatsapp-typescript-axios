@@ -631,7 +631,7 @@
         "operationId": "uploadFileData",
         "parameters": [
           {
-            "name": "upload-session-id", 
+            "name": "upload-session-id",
             "in": "path",
             "required": true,
             "schema": {
@@ -640,7 +640,7 @@
           },
           {
             "name": "Authorization",
-            "in": "header", 
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -650,7 +650,6 @@
           {
             "name": "file_offset",
             "in": "header",
-            "required": true, 
             "schema": {
               "type": "integer",
               "default": 0
