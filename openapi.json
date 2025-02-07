@@ -657,13 +657,28 @@
             "description": "The byte offset to start uploading from"
           },
           {
-            "name": "sig",
-            "in": "query",
+            "name": "Accept",
+            "in": "header",
             "required": true,
             "schema": {
-              "type": "string"
-            },
-            "description": "Signature parameter for the upload session"
+              "type": "string",
+              "default": "*/*"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/pdf",
+                "image/jpeg",
+                "image/jpg",
+                "image/png"
+              ],
+              "description": "The content type of the file being uploaded"
+            }
           }
         ],
         "requestBody": {
