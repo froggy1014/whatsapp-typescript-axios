@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.7.5
+
+### Patch Changes
+
+- 3b5c69f: remove upload session id
+
 ## 1.7.4
 
 ### Patch Changes
