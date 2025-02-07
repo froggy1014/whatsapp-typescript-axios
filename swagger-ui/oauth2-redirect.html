@@ -8,8 +8,11 @@
     'use strict';
     function run () {
         var oauth2 = window.opener.swaggerUIRedirectOauth2;
+        console.log("🚀 ~ run ~ oauth2:", oauth2)
         var sentState = oauth2.state;
+        console.log("🚀 ~ run ~ sentState:", sentState)
         var redirectUrl = oauth2.redirectUrl;
+        console.log("🚀 ~ run ~ redirectUrl:", redirectUrl)
         var isValid, qp, arr;
 
         if (/code|token|error/.test(window.location.hash)) {
@@ -19,6 +22,7 @@
         }
 
         arr = qp.split("&");
+        console.log("🚀 ~ run ~ qp:", qp)
         arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
         qp = qp ? JSON.parse('{' + arr.join() + '}',
                 function (key, value) {
@@ -27,6 +31,7 @@
         ) : {};
 
         isValid = qp.state === sentState;
+        console.log("🚀 ~ run ~ isValid:", isValid)
 
         if ((
           oauth2.auth.schema.get("flow") === "accessCode" ||
@@ -42,12 +47,15 @@
                 });
             }
 
+            console.log("🚀 ~ run ~ qp:", qp)
             if (qp.code) {
                 delete oauth2.state;
                 oauth2.auth.code = qp.code;
                 oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});
             } else {
                 let oauthErrorMsg;
+                console.log("🚀 ~ run ~ oauthErrorMsg:", oauthErrorMsg)
+
                 if (qp.error) {
                     oauthErrorMsg = "["+qp.error+"]: " +
                         (qp.error_description ? qp.error_description+ ". " : "no accessCode received from the server. ") +
