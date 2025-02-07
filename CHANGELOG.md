@@ -1,5 +1,13 @@
 # whatsapp-typescript-axios
 
+## 1.7.4
+
+### Patch Changes
+
+- e454778: add contentType header
+- 054844c: update upload-session-id
+- 8775416: remove header paramteres
+
 ## 1.7.3
 
 ### Patch Changes
