@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.7.3
+
+### Patch Changes
+
+- 9bc5270: update parameters on upload session id
+
 ## 1.7.2
 
 ### Patch Changes
