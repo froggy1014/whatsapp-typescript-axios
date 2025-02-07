@@ -16,21 +16,13 @@
         "type": "http",
         "scheme": "bearer"
       },
-      "oauth2": {
-        "type": "oauth2",
+      "OAuth": {
+        "type": "apiKey",
         "description": "OAuth 2.0 인증을 사용하여 WhatsApp Cloud API에 접근합니다",
-        "flows": {
-          "authorizationCode": {
-            "authorizationUrl": "https://www.facebook.com/v22.0/dialog/oauth",
-            "tokenUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
-            "refreshUrl": "https://graph.facebook.com/v22.0/oauth/access_token",
-            "scopes": {
-              "whatsapp_business_management": "WhatsApp Business API 관리 권한",
-              "whatsapp_business_messaging": "WhatsApp 메시지 전송 권한",
-              "business_management": "비즈니스 관리 권한"
-            }
-          }
-        }
+        "name": "Authorization",
+        "in": "header",
+        "scheme": "http",
+        "bearerFormat": "http"
       }
     }
   },
@@ -620,14 +612,9 @@
         "summary": "Upload File Data",
         "security": [
           {
-            "oauth2": [
-              "whatsapp_business_management",
-              "whatsapp_business_messaging",
-              "business_management"
-            ]
+            "OAuth": []
           }
         ],
-
         "description": "Upload file data in chunks by making a POST request with the upload session ID. This is step 2 of the upload process.\n\n**Example Request:**\n```bash\ncurl -i -X POST \"https://graph.facebook.com/v22.0/upload:<UPLOAD_SESSION_ID>\" \\\n  --header \"Authorization: OAuth <USER_ACCESS_TOKEN>\" \\\n  --header \"file_offset: 0\" \\\n  --data-binary @<FILE_NAME>\n```",
         "operationId": "uploadFileData",
         "parameters": [
@@ -660,11 +647,25 @@
         ],
         "requestBody": {
           "content": {
-            "*/*": {
+            "application/pdf": {
               "schema": {
                 "type": "string",
                 "format": "binary",
-                "description": "File data to upload"
+                "description": "PDF 파일 업로드"
+              }
+            },
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary",
+                "description": "JPEG/JPG 이미지 업로드"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary",
+                "description": "PNG 이미지 업로드"
               }
             }
           }
