@@ -630,7 +630,8 @@
             "required": false,
             "description": "The offset of the file chunk being uploaded",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "default": 0
             }
           },
           {
