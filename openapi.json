@@ -598,7 +598,7 @@
         }
       ]
     },
-    "/uploads/{upload-id}": {
+    "/uploads/{upload-session-id}": {
       "post": {
         "tags": ["Media"],
         "summary": "Template Media Upload File Data",
