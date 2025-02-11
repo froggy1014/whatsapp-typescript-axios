@@ -616,7 +616,7 @@
         },
         "parameters": [
           {
-            "name": "upload-id",
+            "name": "upload-session-id",
             "in": "path",
             "required": true,
             "description": "Upload session ID returned from the previous request",
@@ -663,18 +663,7 @@
             }
           }
         }
-      },
-      "parameters": [
-        {
-          "name": "upload-id",
-          "in": "path",
-          "required": true,
-          "description": "Upload session ID returned from the previous request",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+      }
     },
     "/{business-phone-number-id}/media": {
       "post": {
