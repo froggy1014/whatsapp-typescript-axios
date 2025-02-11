@@ -532,9 +532,9 @@
     "/{app-id}/uploads": {
       "post": {
         "tags": ["Media"],
-        "summary": "Upload Session",
+        "summary": "Template Media Upload Session",
         "description": "Start an upload session by making a POST request with required parameters. This is step 1 of the upload process.",
-        "operationId": "UploadSession",
+        "operationId": "TemplateMediaUploadSession",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
@@ -592,6 +592,84 @@
           "in": "path",
           "required": true,
           "description": "Your app's Meta ID",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/{upload-session-id}": {
+      "post": {
+        "tags": ["Media"],
+        "summary": "Template Media Upload File Data",
+        "description": "Upload the file data in chunks. This is step 2 of the upload process.",
+        "operationId": "TemplateMediaUploadFileData",
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "upload-session-id",
+            "in": "path",
+            "required": true,
+            "description": "Upload session ID returned from the previous request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file_offset",
+            "in": "header",
+            "required": false,
+            "description": "The offset of the file chunk being uploaded",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "OAuth access token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File chunk uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "h": {
+                      "type": "string",
+                      "description": "Uploaded file handle",
+                      "example": "2:c2FtcGxl..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "upload-session-id",
+          "in": "path",
+          "required": true,
+          "description": "Upload session ID returned from the previous request",
           "schema": {
             "type": "string"
           }
