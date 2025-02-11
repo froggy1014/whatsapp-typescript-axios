@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.8.0
+
+### Minor Changes
+
+- 5a75df3: add template media upload api
+
 ## 1.7.5
 
 ### Patch Changes
