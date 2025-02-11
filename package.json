@@ -7,6 +7,7 @@
     "commit": "cz",
     "prepare": "husky",
     "generate": "openapi-generator-cli generate && tsc",
+    "validate": "openapi-generator-cli validate -i openapi.json",
     "changeset": "changeset",
     "ci:version": "changeset version",
     "ci:publish": "npm publish --access public",
