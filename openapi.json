@@ -606,10 +606,21 @@
         "operationId": "TemplateMediaUploadFileData",
         "requestBody": {
           "content": {
-            "application/octet-stream": {
+            "multipart/form-data": {
               "schema": {
-                "type": "string",
-                "format": "binary"
+                "type": "object",
+                "required": ["file_data", "sig"],
+                "properties": {
+                  "file_data": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File data to upload"
+                  },
+                  "sig": {
+                    "type": "string",
+                    "description": "Signature of the file data"
+                  }
+                }
               }
             }
           }
