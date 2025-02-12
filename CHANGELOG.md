@@ -1,5 +1,12 @@
 # whatsapp-typescript-axios
 
+## 1.9.0
+
+### Minor Changes
+
+- 137598e: update example property of template interface
+- 2233e1a: add properties to the template example
+
 ## 1.8.0
 
 ### Minor Changes
