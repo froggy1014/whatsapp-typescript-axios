@@ -7283,6 +7283,13 @@
                                     }
                                   }
                                 }
+                              },
+                              "header_handle": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "example": "https://www.example.com"
+                                }
                               }
                             }
                           },
@@ -7573,6 +7580,13 @@
                                     "example": "heetae"
                                   }
                                 }
+                              }
+                            },
+                            "header_handle": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "example": "https://www.example.com"
                               }
                             }
                           }
@@ -8117,6 +8131,13 @@
                                             "example": "John"
                                           }
                                         }
+                                      }
+                                    },
+                                    "header_handle": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "example": "https://www.example.com"
                                       }
                                     }
                                   }
