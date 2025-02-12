@@ -7216,6 +7216,18 @@
                                   "type": "string",
                                   "example": "DATA_EXCHANGE"
                                 },
+                                "flow_json": {
+                                  "type": "string",
+                                  "example": "{\"version\": \"3.1\", \"screens\": [{\"id\": \"1\", \"type\": \"TEXT\", \"text\": \"Hello, how can I help you today?\"}]}"
+                                },
+                                "navigation": {
+                                  "type": "string",
+                                  "example": "flow_json_first_screen"
+                                },
+                                "phone_number": {
+                                  "type": "string",
+                                  "example": "1234567890"
+                                },
                                 "example": {
                                   "type": "array",
                                   "items": {
@@ -8063,11 +8075,45 @@
                                     "properties": {
                                       "text": {
                                         "type": "string",
-                                        "example": "Stop promotions"
+                                        "example": "Manage Payment"
                                       },
                                       "type": {
                                         "type": "string",
-                                        "example": "QUICK_REPLY"
+                                        "example": "URL"
+                                      },
+                                      "url": {
+                                        "type": "string",
+                                        "example": "https://cloudhospital-int-dc.com/{{1}}"
+                                      },
+                                      "flow_id": {
+                                        "type": "string",
+                                        "example": "471155329337058"
+                                      },
+                                      "flow_action": {
+                                        "type": "string",
+                                        "example": "DATA_EXCHANGE"
+                                      },
+                                      "flow_json": {
+                                        "type": "string",
+                                        "example": "{\"version\": \"3.1\", \"screens\": [{\"id\": \"1\", \"type\": \"TEXT\", \"text\": \"Hello, how can I help you today?\"}]}"
+                                      },
+                                      "navigation": {
+                                        "type": "string",
+                                        "example": "flow_json_first_screen"
+                                      },
+                                      "phone_number": {
+                                        "type": "string",
+                                        "example": "1234567890"
+                                      },
+                                      "example": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "example": [
+                                          "Manage Payment",
+                                          "https://cloudhospital-int-dc.com/{{1}}"
+                                        ]
                                       }
                                     }
                                   },
