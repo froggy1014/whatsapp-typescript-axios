@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.9.1
+
+### Patch Changes
+
+- af84427: add parameter of limit, category, language, status
+
 ## 1.9.0
 
 ### Minor Changes
