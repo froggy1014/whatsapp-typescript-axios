@@ -1829,6 +1829,60 @@
                       "recipient_type",
                       "to"
                     ]
+                  },
+                  {
+                    "properties": {
+                      "type": {
+                        "enum": ["video"]
+                      },
+                      "video": {
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Required if using an uploaded media asset (recommended). Uploaded media asset ID.",
+                            "example": "1166846181421424"
+                          },
+                          "link": {
+                            "type": "string", 
+                            "description": "Required if linking to your media asset (not recommended). URL of video asset on your public server.",
+                            "example": "https://www.luckyshrub.com/assets/lucky-shrub-eclipse-viewing.mp4"
+                          },
+                          "caption": {
+                            "type": "string",
+                            "description": "Optional video caption text",
+                            "maxLength": 1024,
+                            "example": "A succulent eclipse!"
+                          }
+                        }
+                      },
+                      "messaging_product": {
+                        "type": "string",
+                        "example": "whatsapp"
+                      },
+                      "recipient_type": {
+                        "type": "string",
+                        "example": "individual"
+                      },
+                      "to": {
+                        "type": "string",
+                        "example": "+16505551234"
+                      },
+                      "context": {
+                        "properties": {
+                          "message_id": {
+                            "type": "string",
+                            "example": "<MSGID_OF_MSG_YOU_ARE_REPLYING_TO>"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "video",
+                      "messaging_product", 
+                      "recipient_type",
+                      "to"
+                    ]
                   }
                 ]
               },
