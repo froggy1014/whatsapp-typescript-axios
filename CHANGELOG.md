@@ -1,5 +1,11 @@
 # whatsapp-typescript-axios
 
+## 1.9.2
+
+### Patch Changes
+
+- b3722c8: add video type for message endpoint
+
 ## 1.9.1
 
 ### Patch Changes
